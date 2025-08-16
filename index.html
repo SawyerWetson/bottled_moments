@@ -138,23 +138,18 @@
     border: 1px solid #ccc;
   }
 
-  /* Fixed side video at top-right */
+  /* Top video */
   .video-container {
-    position: fixed;
-    top: 0;
-    right: 20px;
-    width: 400px;
-    z-index: 999;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
   }
 
-  /* Responsive adjustments */
-  @media(max-width: 1000px) {
-    .video-container {
-      position: relative;
+  @media(max-width: 700px) {
+    .video-container iframe {
       width: 100%;
-      top: 0;
-      right: 0;
-      margin-bottom: 20px;
+      height: auto;
     }
   }
 </style>
@@ -170,6 +165,16 @@
     <a onclick="scrollToSection('contact')">Contact</a>
   </nav>
 </header>
+
+<!-- Video at top -->
+<div class="video-container">
+  <iframe src="https://player.vimeo.com/video/1110596803" 
+          width="600" height="338" 
+          frameborder="0" 
+          allow="autoplay; fullscreen; picture-in-picture" 
+          allowfullscreen
+          title="Bottled Moments Commercial"></iframe>
+</div>
 
 <!-- Main content -->
 <div class="content-container">
@@ -198,9 +203,8 @@
         <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now</a></button>
       </div>
       <div class="product-card">
-        <img src='vip.png'>
         <h3>VIP pack <h6>Badge by Freepix and Flat Icon</h6></h3>
-        <img src='bagimage.jpg'>
+        <img src='bagimage.jpg' width='150' height='150'>
         <p>Price: $15</p>
         <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
       </div>
@@ -230,16 +234,6 @@
   </section>
 </div>
 
-<!-- Fixed side video at top-right -->
-<div class="video-container">
-  <iframe src="https://player.vimeo.com/video/1110596803" 
-          width="400" height="225" 
-          frameborder="0" 
-          allow="autoplay; fullscreen; picture-in-picture" 
-          allowfullscreen
-          title="Bottled Moments Commercial"></iframe>
-</div>
-
 <script>
   function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
@@ -255,3 +249,4 @@
 
 </body>
 </html>
+
