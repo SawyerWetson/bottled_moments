@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+  fetch("/config.json")
+    .then(res => res.json())
+    .then(cfg => {
+      if (cfg.maintenance) {
+        window.location.href = "/maintenance.html";
+      }
+    })
+    .catch(err => console.error("Config not found", err));
+</script>
+
     <meta charset="UTF-8">
     <title>Bottled Moments</title>
     <style>
