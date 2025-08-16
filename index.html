@@ -175,6 +175,14 @@
     <script>
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        
+        }
+        let running = true;
+        if(!running) {
+            console.log("CRITICAL ERROR!!! SERVER IS NOT RUNNING!!!!!!!!!!!!!");
+        }
+        else {
+            console.log("Server is running");
         }
     </script>
 </body>
