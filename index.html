@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bottled Moments</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f7f3f0, #e4f0f7);
+        }
+        header {
+            background-color: #ffffffcc;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        img.logo {
+            width: 150px;
+            height: auto;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            margin: 0 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        nav a:hover {
+            background-color: #6fa8dc;
+            color: white;
+        }
+        section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+        }
+        .btn {
+            background-color: #6fa8dc;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #3d85c6;
+        }
+        /* Product cards for Buy section */
+        .product-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .product-card h3 {
+            margin: 15px 0 10px 0;
+            color: #333;
+        }
+        .product-card p {
+            color: #555;
+            font-size: 16px;
+        }
+        /* Contact form */
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        form input, form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img class="logo" src="logo.png" alt="Bottled Moments Logo">
+        <nav>
+            <a onclick="scrollToSection('home')">Home</a>
+            <a onclick="scrollToSection('buy')">Buy</a>
+            <a onclick="scrollToSection('about')">About</a>
+            <a onclick="scrollToSection('contact')">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h1>Obtain A Stunning Necklace</h1>
+        <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
+        <button class="btn" onclick="scrollToSection('buy')">Start Your Bottled Moment</button>
+    </section>
+
+    <section id="buy">
+        <h1>Buy Your Bottled Moment Necklace</h1>
+        <p>Choose your favorite design and make your memories last forever!</p>
+        <div class="product-grid">
+            <div class="product-card">
+                <h3>Bottle Necklace</h3>
+                <p>Price: $10</p>
+                <button class="btn">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <h3>Olivia's special</h3>
+                <p>Price: $12</p>
+                <button class="btn">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h1>About Bottled Moments</h1>
+        <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments. </p>
+    </section>
+
+    <section id="contact">
+        <h1>Contact Us</h1>
+        <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="5" required></textarea><br>
+
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
