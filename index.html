@@ -55,12 +55,11 @@
     color: white;
   }
 
-  /* Main content + video layout */
+  /* Main content layout */
   .main-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
     gap: 20px;
     padding: 20px;
   }
@@ -70,11 +69,13 @@
     max-width: 700px;
   }
 
+  /* Fixed side video */
   .video-container {
-    flex: 0 1 400px;
-    max-width: 400px;
     position: fixed;
     top: 100px;
+    right: 20px;
+    width: 400px;
+    z-index: 999;
   }
 
   section {
@@ -169,7 +170,9 @@
     .video-container {
       position: relative;
       top: 0;
-      max-width: 100%;
+      right: 0;
+      width: 100%;
+      margin-bottom: 20px;
     }
   }
 </style>
@@ -186,7 +189,6 @@
   </nav>
 </header>
 
-<!-- main content with side vid -->
 <div class="main-container">
   <div class="content">
     <section id="home">
@@ -203,7 +205,7 @@
           <h3>Bottle Necklace</h3> 
           <img src='butifulimage.jpg'/>
           <p>Price: $10</p>
-          <p> Includes: Basic Bottle Necklace</p>
+          <p>Includes: Basic Bottle Necklace</p>
           <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now!!</a></button>
         </div>
         <div class="product-card">
@@ -213,12 +215,12 @@
           <p>Includes: Special Necklace</p>
           <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now</a></button>
         </div>
-      </div>
-      <div class="product-card">
-        <h3>VIP pack  <h6>Badge by Freepix and Flat Icon </h6></h3>
-        <img src='bagimage.jpg'>
-        <p>Price: $15</p>
-        <p>Includes: One Large Bottle neckalce, one rubber duck, and one small bottle necklace</p>
+        <div class="product-card">
+          <h3>VIP pack <h6>Badge by Freepix and Flat Icon</h6></h3>
+          <img src='bagimage.jpg'>
+          <p>Price: $15</p>
+          <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
+        </div>
       </div>
     </section>
 
@@ -245,7 +247,7 @@
     </section>
   </div>
 
-  <!-- Side video -->
+  <!-- Fixed side video -->
   <div class="video-container">
     <iframe src="https://player.vimeo.com/video/1110596803" 
             width="400" height="225" 
@@ -259,14 +261,12 @@
 <script>
   function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-
-    
   }
+
   let running = true;
   if(!running) {
     console.log("error");
-  }
-  else {
+  } else {
     console.log("Server running");
   }
 </script>
