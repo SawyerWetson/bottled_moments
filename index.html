@@ -73,7 +73,7 @@
   .video-container {
     flex: 0 1 400px;
     max-width: 400px;
-    position: sticky;
+    position: fixed;
     top: 100px;
   }
 
@@ -186,7 +186,7 @@
   </nav>
 </header>
 
-<!-- Main content with side video -->
+<!-- main content with side vid -->
 <div class="main-container">
   <div class="content">
     <section id="home">
@@ -203,14 +203,22 @@
           <h3>Bottle Necklace</h3> 
           <img src='butifulimage.jpg'/>
           <p>Price: $10</p>
+          <p> Includes: Basic Bottle Necklace</p>
           <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now!!</a></button>
         </div>
         <div class="product-card">
           <h3>Olivia's special</h3> 
           <img src='customstuff.jpg'/>
           <p>Price: $12</p>
+          <p>Includes: Special Necklace</p>
           <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now</a></button>
         </div>
+      </div>
+      <div class="product-card">
+        <h3>VIP pack  <h6>Badge by Freepix and Flat Icon </h6></h3>
+        <img src='bagimage.jpg'>
+        <p>Price: $15</p>
+        <p>Includes: One Large Bottle neckalce, one rubber duck, and one small bottle necklace</p>
       </div>
     </section>
 
@@ -251,6 +259,15 @@
 <script>
   function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+
+    
+  }
+  let running = true;
+  if(!running) {
+    console.log("error");
+  }
+  else {
+    console.log("Server running");
   }
 </script>
 
