@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
+<meta charset="UTF-8">
+<title>Bottled Moments</title>
+<script>
+  // Maintenance mode check
   fetch("/config.json")
     .then(res => res.json())
     .then(cfg => {
@@ -11,191 +14,245 @@
     })
     .catch(err => console.error("Config not found", err));
 </script>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f7f3f0, #e4f0f7);
+  }
 
-    <meta charset="UTF-8">
-    <title>Bottled Moments</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, #f7f3f0, #e4f0f7);
-        }
-        header {
-            background-color: #ffffffcc;
-            padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        img.logo {
-            width: 150px;
-            height: auto;
-            image: url('bottled_image_logo.png')
-        }
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            margin: 0 10px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: background 0.3s;
-            cursor: pointer;
-        }
-        nav a:hover {
-            background-color: #6fa8dc;
-            color: white;
-        }
-        section {
-            text-align: center;
-            padding: 60px 20px;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        p {
-            color: #555;
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-        }
-        .btn {
-            background-color: #6fa8dc;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background 0.3s;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #3d85c6;
-        }
-        /* Product cards for Buy section */
-        .product-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 30px;
-        }
-        .product-card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            width: 250px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-        .product-card img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .product-card h3 {
-            margin: 15px 0 10px 0;
-            color: #333;
-        }
-        .product-card p {
-            color: #555;
-            font-size: 16px;
-        }
-        /* Contact form */
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        form input, form textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-    </style>
+  header {
+    background-color: #ffffffcc;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  img.logo {
+    width: 150px;
+    height: auto;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    margin: 0 10px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  nav a:hover {
+    background-color: #6fa8dc;
+    color: white;
+  }
+
+  /* Main content + video layout */
+  .main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .content {
+    flex: 1 1 600px;
+    max-width: 700px;
+  }
+
+  .video-container {
+    flex: 0 1 400px;
+    max-width: 400px;
+    position: sticky;
+    top: 100px;
+  }
+
+  section {
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    background-color: #6fa8dc;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #3d85c6;
+  }
+
+  .product-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+  }
+
+  .product-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .product-card h3 {
+    margin: 15px 0 10px 0;
+    color: #333;
+  }
+
+  .product-card p {
+    color: #555;
+    font-size: 16px;
+  }
+
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  form input, form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  /* Responsive adjustments */
+  @media(max-width: 1000px) {
+    .main-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .video-container {
+      position: relative;
+      top: 0;
+      max-width: 100%;
+    }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1110596803?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Bottled Moments Advertisment - Made with Clipchamp"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-        <img class="logo" src="bottled_image_logo.png" alt="Bottled Moments Logo">
-        <nav>
-            <a onclick="scrollToSection('home')">Home</a>
-            <a onclick="scrollToSection('buy')">Buy</a>
-            <a onclick="scrollToSection('about')">About</a>
-            <a onclick="scrollToSection('contact')">Contact</a>
-        </nav>
-    </header>
 
+<header>
+  <img class="logo" src="bottled_image_logo.png" alt="Bottled Moments Logo">
+  <nav>
+    <a onclick="scrollToSection('home')">Home</a>
+    <a onclick="scrollToSection('buy')">Buy</a>
+    <a onclick="scrollToSection('about')">About</a>
+    <a onclick="scrollToSection('contact')">Contact</a>
+  </nav>
+</header>
+
+<!-- Main content with side video -->
+<div class="main-container">
+  <div class="content">
     <section id="home">
-        <h1>Obtain A Stunning Necklace</h1>
-        <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
-        <button class="btn" onclick="scrollToSection('buy')">Start Your Bottled Moment</button>
+      <h1>Obtain A Stunning Necklace</h1>
+      <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
+      <button class="btn" onclick="scrollToSection('buy')">Start Your Bottled Moment</button>
     </section>
 
     <section id="buy">
-        <h1>Buy Your Bottled Moment Necklace</h1>
-        <p>Choose your favorite design!</p>
-        <div class="product-grid">
-            <div class="product-card">
-                <h3>Bottle Necklace</h3> <img src='butifulimage.jpg'/>
-                <p>Price: $10</p>
-                <button class="btn"><a href=https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview target="_blank">Buy Now!!</a></button>
-                
-            </div>
-            <div class="product-card">
-                <h3>Olivia's special</h3> <img src='customstuff.jpg'/>
-                <p>Price: $12</p>
-                <button class="btn"><a href=https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview target="_blank">Buy Now</a></button>
-            </div>
+      <h1>Buy Your Bottled Moment Necklace</h1>
+      <p>Choose your favorite design!</p>
+      <div class="product-grid">
+        <div class="product-card">
+          <h3>Bottle Necklace</h3> 
+          <img src='butifulimage.jpg'/>
+          <p>Price: $10</p>
+          <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now!!</a></button>
         </div>
+        <div class="product-card">
+          <h3>Olivia's special</h3> 
+          <img src='customstuff.jpg'/>
+          <p>Price: $12</p>
+          <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now</a></button>
+        </div>
+      </div>
     </section>
 
     <section id="about">
-        <h1>About Bottled Moments</h1>
-        <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments. </p>
+      <h1>About Bottled Moments</h1>
+      <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments.</p>
     </section>
 
     <section id="contact">
-        <h1>Contact Us</h1>
-        <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
-        <form>
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" required><br>
+      <h1>Contact Us</h1>
+      <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
+      <form>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
 
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
 
-            <label for="message">Message:</label><br>
-            <textarea id="message" name="message" rows="5" required></textarea><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="5" required></textarea><br>
 
-            <button type="submit" class="btn">Send Message</button>
-        </form>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
     </section>
+  </div>
 
-    <script>
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        
-        }
-        let running = true;
-        if(!running) {
-            console.log("CRITICAL ERROR!!! SERVER IS NOT RUNNING!!!!!!!!!!!!!");
-        }
-        else {
-            console.log("Server is running");
-        }
-    </script>
+  <!-- Side video -->
+  <div class="video-container">
+    <iframe src="https://player.vimeo.com/video/1110596803" 
+            width="400" height="225" 
+            frameborder="0" 
+            allow="autoplay; fullscreen; picture-in-picture" 
+            allowfullscreen
+            title="Bottled Moments Commercial"></iframe>
+  </div>
+</div>
+
+<script>
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
 </body>
 </html>
