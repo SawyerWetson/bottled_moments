@@ -55,29 +55,6 @@
     color: white;
   }
 
-  /* Main content layout */
-  .main-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .content {
-    flex: 1 1 600px;
-    max-width: 700px;
-  }
-
-  /* Fixed side video */
-  .video-container {
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    width: 400px;
-    z-index: 999;
-  }
-
   section {
     padding: 60px 20px;
     text-align: center;
@@ -161,17 +138,22 @@
     border: 1px solid #ccc;
   }
 
+  /* Fixed side video at top-right */
+  .video-container {
+    position: fixed;
+    top: 0;
+    right: 20px;
+    width: 400px;
+    z-index: 999;
+  }
+
   /* Responsive adjustments */
   @media(max-width: 1000px) {
-    .main-container {
-      flex-direction: column;
-      align-items: center;
-    }
     .video-container {
       position: relative;
+      width: 100%;
       top: 0;
       right: 0;
-      width: 100%;
       margin-bottom: 20px;
     }
   }
@@ -189,74 +171,73 @@
   </nav>
 </header>
 
-<div class="main-container">
-  <div class="content">
-    <section id="home">
-      <h1>Obtain A Stunning Necklace</h1>
-      <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
-      <button class="btn" onclick="scrollToSection('buy')">Start Your Bottled Moment</button>
-    </section>
+<!-- Main content -->
+<div class="content-container">
+  <section id="home">
+    <h1>Obtain A Stunning Necklace</h1>
+    <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
+    <button class="btn" onclick="scrollToSection('buy')">Start Your Bottled Moment</button>
+  </section>
 
-    <section id="buy">
-      <h1>Buy Your Bottled Moment Necklace</h1>
-      <p>Choose your favorite design!</p>
-      <div class="product-grid">
-        <div class="product-card">
-          <h3>Bottle Necklace</h3> 
-          <img src='butifulimage.jpg'/>
-          <p>Price: $10</p>
-          <p>Includes: Basic Bottle Necklace</p>
-          <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now!!</a></button>
-        </div>
-        <div class="product-card">
-          <h3>Olivia's special</h3> 
-          <img src='customstuff.jpg'/>
-          <p>Price: $12</p>
-          <p>Includes: Special Necklace</p>
-          <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now</a></button>
-        </div>
-        <div class="product-card">
-          <img src'vip.png'/>
-          <h3>VIP pack <h6>Badge by Freepix and Flat Icon</h6></h3>
-          <img src='bagimage.jpg'>
-          <p>Price: $15</p>
-          <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
-        </div>
+  <section id="buy">
+    <h1>Buy Your Bottled Moment Necklace</h1>
+    <p>Choose your favorite design!</p>
+    <div class="product-grid">
+      <div class="product-card">
+        <h3>Bottle Necklace</h3> 
+        <img src='butifulimage.jpg'/>
+        <p>Price: $10</p>
+        <p>Includes: Basic Bottle Necklace</p>
+        <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now!!</a></button>
       </div>
-    </section>
+      <div class="product-card">
+        <h3>Olivia's special</h3> 
+        <img src='customstuff.jpg'/>
+        <p>Price: $12</p>
+        <p>Includes: Special Necklace</p>
+        <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now</a></button>
+      </div>
+      <div class="product-card">
+        <img src='vip.png'>
+        <h3>VIP pack <h6>Badge by Freepix and Flat Icon</h6></h3>
+        <img src='bagimage.jpg'>
+        <p>Price: $15</p>
+        <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="about">
-      <h1>About Bottled Moments</h1>
-      <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments.</p>
-    </section>
+  <section id="about">
+    <h1>About Bottled Moments</h1>
+    <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments.</p>
+  </section>
 
-    <section id="contact">
-      <h1>Contact Us</h1>
-      <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
-      <form>
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br>
+  <section id="contact">
+    <h1>Contact Us</h1>
+    <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
+    <form>
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" required><br>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" required><br>
 
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="5" required></textarea><br>
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" rows="5" required></textarea><br>
 
-        <button type="submit" class="btn">Send Message</button>
-      </form>
-    </section>
-  </div>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+</div>
 
-  <!-- Fixed side video -->
-  <div class="video-container">
-    <iframe src="https://player.vimeo.com/video/1110596803" 
-            width="400" height="225" 
-            frameborder="0" 
-            allow="autoplay; fullscreen; picture-in-picture" 
-            allowfullscreen
-            title="Bottled Moments Commercial"></iframe>
-  </div>
+<!-- Fixed side video at top-right -->
+<div class="video-container">
+  <iframe src="https://player.vimeo.com/video/1110596803" 
+          width="400" height="225" 
+          frameborder="0" 
+          allow="autoplay; fullscreen; picture-in-picture" 
+          allowfullscreen
+          title="Bottled Moments Commercial"></iframe>
 </div>
 
 <script>
