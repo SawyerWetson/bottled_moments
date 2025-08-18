@@ -3,23 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Bottled Moments</title>
-<script>
-  // Maintenance mode check
-  fetch("/config.json")
-    .then(res => res.json())
-    .then(cfg => {
-      if (cfg.maintenance) {
-        window.location.href = "/maintenance.html";
-      }
-    })
-    .catch(err => console.error("Config not found", err));
-</script>
 <style>
   body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom, #f7f3f0, #e4f0f7);
+    color: #333;
+    transition: background 0.4s, color 0.4s;
+  }
+
+  body.dark-mode {
+    background: #121212;
+    color: #f5f5f5;
   }
 
   header {
@@ -55,18 +51,66 @@
     color: white;
   }
 
+  /* --- Sun/Moon Toggle Switch --- */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #f1c40f; /* sun color */
+    transition: 0.4s;
+    border-radius: 30px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "☀️";
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    background-color: #2c3e50; /* dark sky */
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(30px);
+    content: "🌙";
+  }
+
   section {
     padding: 60px 20px;
     text-align: center;
   }
 
   h1 {
-    color: #333;
+    color: inherit;
     margin-bottom: 20px;
   }
 
   p {
-    color: #555;
+    color: inherit;
     font-size: 18px;
     margin-bottom: 20px;
   }
@@ -116,12 +160,6 @@
 
   .product-card h3 {
     margin: 15px 0 10px 0;
-    color: #333;
-  }
-
-  .product-card p {
-    color: #555;
-    font-size: 16px;
   }
 
   form {
@@ -138,7 +176,6 @@
     border: 1px solid #ccc;
   }
 
-  /* Top video */
   .video-container {
     width: 100%;
     max-width: 600px;
@@ -152,22 +189,17 @@
       height: auto;
     }
   }
-  body.dark-mode {
-    background-color: white;
-    color: white;
-  }
 </style>
 </head>
 <body>
 
 <header>
   <img class="logo" src="bottled_image_logo.png" alt="Bottled Moments Logo">
-  <div id='toggledarkMode' >🌙 Toggle Dark Mode</div>
-    <a onclick="scrollToSection('home')">Home</a>
-    <a onclick="scrollToSection('buy')">Buy</a>
-    <a onclick="scrollToSection('about')">About</a>
-    <a onclick="scrollToSection('contact')">Contact</a>
-  </nav>
+  <!-- Dark mode switch -->
+  <label class="switch">
+    <input type="checkbox" id="darkToggle">
+    <span class="slider"></span>
+  </label>
 </header>
 
 <!-- Video at top -->
@@ -194,24 +226,24 @@
     <div class="product-grid">
       <div class="product-card">
         <h3>Bottle Necklace</h3> 
-        <img src='bottleimage.jpg'/>
+        <img src="bottleimage.jpg"/>
         <p>Price: $10</p>
         <p>Includes: Basic Bottle Necklace</p>
-        <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now!!</a></button>
+        <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank" style="color:white;text-decoration:none;">Buy Now!!</a></button>
       </div>
       <div class="product-card">
         <h3>Olivia's special</h3> 
-        <img src='customstuff.jpg'/>
+        <img src="customstuff.jpg"/>
         <p>Price: $12</p>
         <p>Includes: Special Necklace</p>
-        <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank">Buy Now</a></button>
+        <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank" style="color:white;text-decoration:none;">Buy Now</a></button>
       </div>
       <div class="product-card">
-        <h3>VIP pack </h3>
-        <img src='bagimage.jpg'/>
+        <h3>VIP pack</h3>
+        <img src="bagimage.jpg"/>
         <p>Price: $15</p>
         <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
-        <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" targert="_blank">Buy Now</a></button>
+        <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank" style="color:white;text-decoration:none;">Buy Now</a></button>
       </div>
     </div>
   </section>
@@ -244,27 +276,24 @@
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
 
-  let running = true;
-  if(!running) {
-    console.log("error");
-  } else {
-    console.log("Server running");
-  }
-  const togglebtn = document.getElementById('toggledarkMode');
+  const body = document.body;
+  const toggle = document.getElementById("darkToggle");
 
-  if (localStorage.getItem("theme") == "dark") {
-         body.classlist.add("dark-mode");
+  // Load saved theme
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    toggle.checked = true;
   }
-  toggledarkmode.addEventLister('click', () => {
-    body.classlist.toggle("dark-mode");
-  }
-     if (body.classlist.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark");
-  } else {
-       localStorage.setItem("theme", "light");
-  }
+
+  toggle.addEventListener("change", () => {
+    body.classList.toggle("dark-mode");
+    if (body.classList.contains("dark-mode")) {
+      localStorage.setItem("theme", "dark");
+    } else {
+      localStorage.setItem("theme", "light");
+    }
+  });
 </script>
 
 </body>
 </html>
-
