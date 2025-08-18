@@ -152,13 +152,17 @@
       height: auto;
     }
   }
+  body.dark-mode {
+    background-color: white;
+    color: white;
+  }
 </style>
 </head>
 <body>
 
 <header>
   <img class="logo" src="bottled_image_logo.png" alt="Bottled Moments Logo">
-  <nav>
+  <div id='toggledarkMode' >🌙 Toggle Dark Mode</div>
     <a onclick="scrollToSection('home')">Home</a>
     <a onclick="scrollToSection('buy')">Buy</a>
     <a onclick="scrollToSection('about')">About</a>
@@ -245,6 +249,19 @@
     console.log("error");
   } else {
     console.log("Server running");
+  }
+  const togglebtn = document.getElementById('toggledarkMode');
+
+  if (localStorage.getItem("theme") == "dark") {
+         body.classlist.add("dark-mode");
+  }
+  toggledarkmode.addEventLister('click', () => {
+    body.classlist.toggle("dark-mode");
+  }
+     if (body.classlist.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+  } else {
+       localStorage.setItem("theme", "light");
   }
 </script>
 
