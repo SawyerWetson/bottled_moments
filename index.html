@@ -35,11 +35,17 @@
     height: auto;
   }
 
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   nav a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
-    margin: 0 10px;
+    margin: 0 5px;
     padding: 8px 12px;
     border-radius: 5px;
     transition: background 0.3s;
@@ -57,6 +63,7 @@
     display: inline-block;
     width: 60px;
     height: 30px;
+    margin-left: 15px;
   }
 
   .switch input {
@@ -105,12 +112,13 @@
   }
 
   h1 {
-    color: inherit;
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #2c3e50;
     margin-bottom: 20px;
   }
 
   p {
-    color: inherit;
     font-size: 18px;
     margin-bottom: 20px;
   }
@@ -195,6 +203,14 @@
 
 <header>
   <img class="logo" src="bottled_image_logo.png" alt="Bottled Moments Logo">
+  
+  <nav>
+    <a onclick="scrollToSection('home')">Home</a>
+    <a onclick="scrollToSection('buy')">Shop</a>
+    <a onclick="scrollToSection('about')">About</a>
+    <a onclick="scrollToSection('contact')">Contact</a>
+  </nav>
+  
   <!-- Dark mode switch -->
   <label class="switch">
     <input type="checkbox" id="darkToggle">
@@ -226,21 +242,21 @@
     <div class="product-grid">
       <div class="product-card">
         <h3>Bottle Necklace</h3> 
-        <img src="bottleimage.jpg"/>
+        <img src="bottleimage.jpg" alt="Bottle Necklace"/>
         <p>Price: $10</p>
         <p>Includes: Basic Bottle Necklace</p>
         <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank" style="color:white;text-decoration:none;">Buy Now!!</a></button>
       </div>
       <div class="product-card">
         <h3>Olivia's special</h3> 
-        <img src="customstuff.jpg"/>
+        <img src="customstuff.jpg" alt="Olivia's Special Necklace"/>
         <p>Price: $12</p>
         <p>Includes: Special Necklace</p>
         <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank" style="color:white;text-decoration:none;">Buy Now</a></button>
       </div>
       <div class="product-card">
         <h3>VIP pack</h3>
-        <img src="bagimage.jpg"/>
+        <img src="bagimage.jpg" alt="VIP Pack"/>
         <p>Price: $15</p>
         <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
         <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeplSE80GmMDfvqd7Y0s3tulLiJNjRq2vcT_NiYh5leAyJwiw/viewform?usp=preview" target="_blank" style="color:white;text-decoration:none;">Buy Now</a></button>
