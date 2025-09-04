@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Bottled Moments</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
   body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom, #f7f3f0, #e4f0f7);
@@ -19,36 +20,37 @@
   }
 
   header {
-    background-color: #ffffffcc;
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #ffffffdd;
+    padding: 15px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 1000;
+    backdrop-filter: blur(6px);
   }
 
   img.logo {
-    width: 150px;
+    width: 160px;
     height: auto;
   }
 
   nav {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
   }
 
   nav a {
     text-decoration: none;
     color: #333;
-    font-weight: bold;
-    margin: 0 5px;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background 0.3s;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s;
     cursor: pointer;
   }
 
@@ -63,7 +65,7 @@
     display: inline-block;
     width: 60px;
     height: 30px;
-    margin-left: 15px;
+    margin-left: 20px;
   }
 
   .switch input {
@@ -75,8 +77,8 @@
   .slider {
     position: absolute;
     cursor: pointer;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #f1c40f; /* sun color */
+    inset: 0;
+    background-color: #f1c40f;
     transition: 0.4s;
     border-radius: 30px;
   }
@@ -98,7 +100,7 @@
   }
 
   input:checked + .slider {
-    background-color: #2c3e50; /* dark sky */
+    background-color: #2c3e50;
   }
 
   input:checked + .slider:before {
@@ -107,88 +109,105 @@
   }
 
   section {
-    padding: 60px 20px;
+    padding: 80px 20px;
     text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
   h1 {
-    font-size: 2.2em;
-    font-weight: bold;
+    font-size: 2.5em;
+    font-weight: 600;
     color: #2c3e50;
     margin-bottom: 20px;
   }
 
   p {
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    line-height: 1.6;
   }
 
   .btn {
     background-color: #6fa8dc;
     color: white;
-    padding: 12px 25px;
+    padding: 12px 28px;
     border: none;
-    border-radius: 25px;
-    text-decoration: none;
+    border-radius: 30px;
     font-size: 16px;
-    transition: background 0.3s;
+    font-weight: 600;
+    transition: all 0.3s;
     cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
   }
 
   .btn:hover {
     background-color: #3d85c6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   }
 
   .product-grid {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 30px;
+    gap: 40px;
+    margin-top: 40px;
   }
 
   .product-card {
     background-color: white;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    width: 250px;
-    padding: 20px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    width: 280px;
+    padding: 25px;
     text-align: center;
-    transition: transform 0.2s;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
 
   .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.15);
   }
 
   .product-card img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
   .product-card h3 {
-    margin: 15px 0 10px 0;
+    margin: 18px 0 12px 0;
+    font-weight: 600;
   }
 
   form {
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
     text-align: left;
   }
 
   form input, form textarea {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
     border: 1px solid #ccc;
+    font-size: 15px;
+  }
+
+  form button {
+    width: 100%;
   }
 
   .video-container {
     width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
+    max-width: 700px;
+    margin: 30px auto;
     text-align: center;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
   }
 
   @media(max-width: 700px) {
@@ -196,6 +215,36 @@
       width: 100%;
       height: auto;
     }
+    nav {
+      gap: 8px;
+    }
+    nav a {
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+  }
+
+  footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+    margin-top: 60px;
+  }
+
+  footer p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+
+  footer a {
+    color: #6fa8dc;
+    margin: 0 8px;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
   }
 </style>
 </head>
@@ -221,7 +270,7 @@
 <!-- Video at top -->
 <div class="video-container">
   <iframe src="https://player.vimeo.com/video/1110596803" 
-          width="600" height="338" 
+          width="700" height="394" 
           frameborder="0" 
           allow="autoplay; fullscreen; picture-in-picture" 
           allowfullscreen
@@ -233,7 +282,7 @@
   <section id="home">
     <h1>Obtain A Stunning Necklace</h1>
     <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
-    <button class="btn" onclick="scrollToSection('buy')">Start Your Bottled Moment</button>
+    <a href="#buy" class="btn">Start Your Bottled Moment</a>
   </section>
 
   <section id="buy">
@@ -245,21 +294,21 @@
         <img src="bottleimage.jpg" alt="Bottle Necklace"/>
         <p>Price: $7</p>
         <p>Includes: Basic Bottle Necklace</p>
-        <button class="btn"><a href="https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c" target="_blank" style="color:white;text-decoration:none;">Buy Now!!</a></button>
+        <a href="https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c" target="_blank" class="btn">Buy Now</a>
       </div>
       <div class="product-card">
-        <h3>Olivia's special</h3> 
+        <h3>Olivia's Special</h3> 
         <img src="customstuff.jpg" alt="Olivia's Special Necklace"/>
         <p>Price: $10</p>
         <p>Includes: Special Necklace</p>
-        <button class="btn"><a href="https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e" target="_blank" style="color:white;text-decoration:none">Buy Now</a></button>
+        <a href="https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e" target="_blank" class="btn">Buy Now</a>
       </div>
       <div class="product-card">
-        <h3>VIP pack</h3>
+        <h3>VIP Pack</h3>
         <img src="vippackage.jpg" alt="VIP Pack"/>
         <p>Price: $12</p>
         <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
-        <button class="btn"><a href="https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139" target="_blank" style="color:white;text-decoration:none;">Buy Now</a></button>
+        <a href="https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139" target="_blank" class="btn">Buy Now</a>
       </div>
     </div>
   </section>
@@ -273,19 +322,28 @@
     <h1>Contact Us</h1>
     <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
     <form>
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name" required><br>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
 
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" required><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
 
-      <label for="message">Message:</label><br>
-      <textarea id="message" name="message" rows="5" required></textarea><br>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
 
       <button type="submit" class="btn">Send Message</button>
     </form>
   </section>
 </div>
+
+<footer>
+  <p>
+    <a href="#home">Home</a> • 
+    <a href="#buy">Shop</a> • 
+    <a href="#about">About</a> • 
+    <a href="#contact">Contact</a>
+  </p>
+</footer>
 
 <script>
   function scrollToSection(id) {
