@@ -3,65 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <title>Bottled Moments</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #FF7F50;
-    --secondary: #FFB347;
-    --accent: #6C5B7B;
-    --text-dark: #2C2C2C;
+    --primary: #6C5B7B;
+    --secondary: #FF7F50;
+    --accent: #FFB347;
+    --bg-light: #fdfdfd;
+    --bg-dark: #121212;
+    --card-light: #fff;
+    --card-dark: #1f1f1f;
+    --text: #333;
     --text-light: #555;
-    --bg-light: #FFF8F0;
-    --bg-dark: #1C1C1C;
-    --card-bg: rgba(255,255,255,0.9);
-    --card-bg-dark: rgba(28,28,28,0.9);
   }
 
   body {
-    font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 0;
-    background: linear-gradient(120deg, #FFF8F0, #FFEDE0);
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-light);
+    color: var(--text);
     overflow-x: hidden;
-    color: var(--text-dark);
     transition: background 0.4s, color 0.4s;
+    position: relative;
+    z-index: 1;
   }
-  body.dark-mode { background: #1C1C1C; color: #EEE; }
+  body.dark-mode {
+    background: var(--bg-dark);
+    color: #f5f5f5;
+  }
 
   header {
-    background-color: rgba(255,255,255,0.9);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 15px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    backdrop-filter: blur(6px);
+    top: 0; z-index: 1000; backdrop-filter: blur(6px);
   }
-  body.dark-mode header { background-color: rgba(28,28,28,0.9); }
+  body.dark-mode header { background-color: rgba(18,18,18,0.9); }
 
-  .logo { width: 160px; }
-
-  nav { display: flex; gap: 20px; }
+  img.logo { width: 140px; height: auto; }
+  nav { display: flex; align-items: center; gap: 20px; }
   nav a {
     text-decoration: none;
-    color: var(--text-dark);
+    color: var(--text);
     font-weight: 600;
-    padding: 8px 15px;
+    font-size: 15px;
+    padding: 8px 14px;
     border-radius: 8px;
     transition: all 0.3s;
   }
-  nav a:hover { background: var(--primary); color: white; }
-  body.dark-mode nav a { color: #EEE; }
+  nav a:hover {
+    background-color: var(--primary);
+    color: #fff;
+  }
+  body.dark-mode nav a { color: #f5f5f5; }
 
   /* Dark mode toggle */
   .switch { position: relative; display: inline-block; width: 54px; height: 28px; margin-left: 20px; }
   .switch input { opacity: 0; width: 0; height: 0; }
   .slider {
     position: absolute; inset: 0; cursor: pointer;
-    background-color: #FFD700; border-radius: 28px;
+    background-color: #f1c40f; border-radius: 28px;
     transition: 0.4s;
   }
   .slider:before {
@@ -74,114 +79,96 @@
   input:checked + .slider:before { transform: translateX(26px); content: "🌙"; }
 
   section {
-    padding: 100px 20px 60px;
-    max-width: 1000px;
+    padding: 90px 20px;
+    text-align: center;
+    max-width: 950px;
     margin: 0 auto;
     position: relative;
+    z-index: 2;
   }
-
   h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.8em;
+    font-size: 2.6em;
+    font-weight: 600;
+    color: #2c3e50;
     margin-bottom: 20px;
-    color: var(--text-dark);
-    position: relative;
-    z-index: 2;
   }
-  body.dark-mode h1 { color: #EEE; }
-
+  body.dark-mode h1 { color: #eaeaea; }
   p {
     font-size: 17px;
+    margin-bottom: 24px;
     line-height: 1.6;
     color: var(--text-light);
-    margin-bottom: 30px;
-    z-index: 2;
-    position: relative;
   }
-  body.dark-mode p { color: #CCC; }
+  body.dark-mode p { color: #ccc; }
 
   .btn {
-    background: linear-gradient(45deg, var(--primary), var(--secondary));
-    color: white;
-    padding: 12px 28px;
-    border-radius: 30px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.3s;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    color: white; padding: 12px 26px;
+    border: none; border-radius: 30px;
+    font-size: 15px; font-weight: 600;
+    transition: all 0.3s ease; cursor: pointer;
+    text-decoration: none; display: inline-block;
   }
   .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
-
-  /* Floating shapes */
-  .shape {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.2;
-    animation: float 10s infinite alternate;
-    z-index: 1;
-  }
-  .shape1 { width: 120px; height: 120px; background: #FF7F50; top: 50px; left: 10%; }
-  .shape2 { width: 200px; height: 200px; background: #FFB347; top: 200px; right: 15%; }
-  .shape3 { width: 80px; height: 80px; background: #6C5B7B; top: 400px; left: 40%; }
-  @keyframes float { 0% { transform: translateY(0px) } 100% { transform: translateY(-40px) } }
 
   .product-grid {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 35px; margin-top: 40px;
   }
   .product-card {
-    background-color: var(--card-bg);
-    border-radius: 20px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-    width: 280px; padding: 25px;
+    background-color: var(--card-light);
+    border-radius: 18px;
+    box-shadow: 0 5px 14px rgba(0,0,0,0.1);
+    width: 270px; padding: 24px;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-    opacity: 0; transform: translateY(50px);
-  }
-  body.dark-mode .product-card { background-color: var(--card-bg-dark); }
-  .product-card.visible { opacity: 1; transform: translateY(0); transition: all 0.8s ease-out; }
-  .product-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-  .product-card img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
-  .product-card h3 { margin-bottom: 10px; font-weight: 700; font-size: 1.2em; }
-
-  .video-container {
-    max-width: 720px;
-    margin: 50px auto;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    opacity: 0; transform: translateY(50px);
-  }
-  .video-container.visible { opacity: 1; transform: translateY(0); transition: all 0.8s ease-out; }
-
-  footer {
-    background: #2C2C2C;
-    color: white;
-    text-align: center;
-    padding: 30px 15px;
+    transition: transform 0.25s, box-shadow 0.25s;
     position: relative;
     z-index: 2;
   }
-  footer a { color: var(--primary); margin: 0 10px; text-decoration: none; }
+  body.dark-mode .product-card { background-color: var(--card-dark); }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
+  .product-card img { width: 100%; border-radius: 12px; }
+  .product-card h3 { margin: 16px 0 10px; font-weight: 600; }
+
+  .video-container {
+    width: 100%; max-width: 720px; margin: 40px auto;
+    text-align: center; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    z-index: 2; position: relative;
+  }
+
+  footer {
+    background-color: #2c3e50; color: white; text-align: center;
+    padding: 25px 15px; margin-top: 70px; position: relative; z-index: 2;
+  }
+  footer p { margin: 5px 0; font-size: 14px; }
+  footer a { color: var(--accent); margin: 0 10px; text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
-  @media(max-width: 768px) {
-    .product-grid { gap: 25px; }
-    header { padding: 12px 20px; }
-    h1 { font-size: 2em; }
+  /* Floating artistic shapes at bottom */
+  .shape {
+    position: fixed;
+    bottom: -60px;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: float 8s infinite alternate;
+    z-index: 0;
+  }
+  .shape1 { width: 160px; height: 160px; background: var(--secondary); left: 15%; }
+  .shape2 { width: 220px; height: 220px; background: var(--accent); right: 20%; animation-duration: 10s; }
+  .shape3 { width: 100px; height: 100px; background: var(--primary); left: 60%; animation-duration: 12s; }
+
+  @keyframes float {
+    0%   { transform: translateY(0px) }
+    100% { transform: translateY(-40px) }
   }
 </style>
 </head>
 <body>
-
-<!-- Floating shapes -->
-<div class="shape shape1"></div>
-<div class="shape shape2"></div>
-<div class="shape shape3"></div>
 
 <header>
   <img class="logo" src="bottled_image_logo.png" alt="Bottled Moments Logo">
@@ -194,62 +181,83 @@
   <label class="switch"><input type="checkbox" id="darkToggle"><span class="slider"></span></label>
 </header>
 
-<div class="video-container fade-in">
-  <iframe src="https://player.vimeo.com/video/1110596803" width="100%" height="394" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Bottled Moments Commercial"></iframe>
+<div class="video-container">
+  <iframe src="https://player.vimeo.com/video/1110596803"
+          width="700" height="394"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen title="Bottled Moments Commercial"></iframe>
 </div>
 
-<section id="home">
-  <h1>Obtain A Stunning Necklace</h1>
-  <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
-  <a href="#buy" class="btn">Start Your Bottled Moment</a>
-</section>
+<div class="content-container">
+  <section id="home">
+    <h1>Obtain A Stunning Necklace</h1>
+    <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
+    <a href="#buy" class="btn">Start Your Bottled Moment</a>
+  </section>
 
-<section id="buy">
-  <h1>Buy Your Bottled Moment Necklace</h1>
-  <p>Choose your favorite design!</p>
-  <div class="product-grid">
-    <div class="product-card">
-      <h3>Bottle Necklace</h3>
-      <img src="bottleimage.jpg" alt="Bottle Necklace">
-      <p>Price: $7</p>
-      <p>Includes: Basic Bottle Necklace</p>
-      <a href="https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c" target="_blank" class="btn">Buy Now</a>
-      <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
-    </div>
-    <div class="product-card">
-      <h3>Olivia's Special</h3>
-      <img src="customstuff.jpg" alt="Olivia's Special Necklace">
-      <p>Price: $10</p>
-      <p>Includes: Special Necklace</p>
-      <a href="https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e" target="_blank" class="btn">Buy Now</a>
-      <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
-    </div>
-    <div class="product-card">
-      <h3>VIP Pack</h3>
-      <img src="vippackage.jpg" alt="VIP Pack">
-      <p>Price: $12</p>
-      <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
-      <a href="https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139" target="_blank" class="btn">Buy Now</a>
-      <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
-    </div>
-  </div>
-</section>
+  <section id="buy">
+    <h1>Buy Your Bottled Moment Necklace</h1>
+    <p>Choose your favorite design!</p>
+    <div class="product-grid">
 
-<section id="about">
-  <h1>About Bottled Moments</h1>
-  <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments.</p>
-</section>
+      <!-- Product 1 -->
+      <div class="product-card">
+        <h3>Bottle Necklace</h3> 
+        <img src="bottleimage.jpg" alt="Bottle Necklace"/>
+        <p>Price: $7</p>
+        <p>Includes: Basic Bottle Necklace</p>
+        <a href="https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c" target="_blank" class="btn">Buy Now</a>
+        <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
+      </div>
 
-<section id="contact">
-  <h1>Contact Us</h1>
-  <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
-</section>
+      <!-- Product 2 -->
+      <div class="product-card">
+        <h3>Olivia's Special</h3> 
+        <img src="customstuff.jpg" alt="Olivia's Special Necklace"/>
+        <p>Price: $10</p>
+        <p>Includes: Special Necklace</p>
+        <a href="https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e" target="_blank" class="btn">Buy Now</a>
+        <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <h3>VIP Pack</h3>
+        <img src="vippackage.jpg" alt="VIP Pack"/>
+        <p>Price: $12</p>
+        <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
+        <a href="https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139" target="_blank" class="btn">Buy Now</a>
+        <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <h1>About Bottled Moments</h1>
+    <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments.</p>
+  </section>
+
+  <section id="contact">
+    <h1>Contact Us</h1>
+    <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
+  </section>
+</div>
 
 <footer>
   <p><a href="#home">Home</a> • <a href="#buy">Shop</a> • <a href="#about">About</a> • <a href="#contact">Contact</a></p>
 </footer>
 
+<!-- Floating shapes (now at bottom) -->
+<div class="shape shape1"></div>
+<div class="shape shape2"></div>
+<div class="shape shape3"></div>
+
 <script>
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
   const body = document.body;
   const toggle = document.getElementById("darkToggle");
   if (localStorage.getItem("theme") === "dark") { body.classList.add("dark-mode"); toggle.checked = true; }
@@ -257,21 +265,6 @@
     body.classList.toggle("dark-mode");
     localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
   });
-
-  function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-  }
-
-  // Scroll animations
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll(".product-card, .video-container").forEach(el => observer.observe(el));
 </script>
 
 </body>
