@@ -13,11 +13,7 @@
     color: #333;
     transition: background 0.4s, color 0.4s;
   }
-
-  body.dark-mode {
-    background: #121212;
-    color: #f5f5f5;
-  }
+  body.dark-mode { background: #121212; color: #f5f5f5; }
 
   header {
     background-color: #ffffffdd;
@@ -27,257 +23,107 @@
     align-items: center;
     justify-content: space-between;
     position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(6px);
+    top: 0; z-index: 1000; backdrop-filter: blur(6px);
   }
-
-  img.logo {
-    width: 160px;
-    height: auto;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
+  img.logo { width: 160px; height: auto; }
+  nav { display: flex; align-items: center; gap: 15px; }
   nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    font-size: 15px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    transition: all 0.3s;
-    cursor: pointer;
+    text-decoration: none; color: #333; font-weight: 600;
+    font-size: 15px; padding: 10px 15px; border-radius: 8px;
+    transition: all 0.3s; cursor: pointer;
   }
+  nav a:hover { background-color: #6fa8dc; color: white; }
 
-  nav a:hover {
-    background-color: #6fa8dc;
-    color: white;
-  }
-
-  /* --- Sun/Moon Toggle Switch --- */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 30px;
-    margin-left: 20px;
-  }
-
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
+  /* Sun/Moon toggle */
+  .switch { position: relative; display: inline-block; width: 60px; height: 30px; margin-left: 20px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
   .slider {
-    position: absolute;
-    cursor: pointer;
-    inset: 0;
-    background-color: #f1c40f;
-    transition: 0.4s;
-    border-radius: 30px;
+    position: absolute; cursor: pointer; inset: 0; background-color: #f1c40f;
+    transition: 0.4s; border-radius: 30px;
   }
-
   .slider:before {
-    position: absolute;
-    content: "☀️";
-    height: 24px;
-    width: 24px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    transition: 0.4s;
+    position: absolute; content: "☀️"; height: 24px; width: 24px; left: 3px; bottom: 3px;
+    background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; transition: 0.4s;
   }
+  input:checked + .slider { background-color: #2c3e50; }
+  input:checked + .slider:before { transform: translateX(30px); content: "🌙"; }
 
-  input:checked + .slider {
-    background-color: #2c3e50;
-  }
-
-  input:checked + .slider:before {
-    transform: translateX(30px);
-    content: "🌙";
-  }
-
-  section {
-    padding: 80px 20px;
-    text-align: center;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    font-size: 2.5em;
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 20px;
-  }
-
-  p {
-    font-size: 18px;
-    margin-bottom: 25px;
-    line-height: 1.6;
-  }
+  section { padding: 80px 20px; text-align: center; max-width: 1000px; margin: 0 auto; }
+  h1 { font-size: 2.5em; font-weight: 600; color: #2c3e50; margin-bottom: 20px; }
+  p { font-size: 18px; margin-bottom: 25px; line-height: 1.6; }
 
   .btn {
-    background-color: #6fa8dc;
-    color: white;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 0.3s;
-    cursor: pointer;
-    display: inline-block;
-    text-decoration: none;
+    background-color: #6fa8dc; color: white; padding: 12px 28px;
+    border: none; border-radius: 30px; font-size: 16px; font-weight: 600;
+    transition: all 0.3s; cursor: pointer; display: inline-block; text-decoration: none;
   }
-
   .btn:hover {
-    background-color: #3d85c6;
-    transform: translateY(-2px);
+    background-color: #3d85c6; transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   }
 
-  .product-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
-    margin-top: 40px;
-  }
-
+  .product-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; margin-top: 40px; }
   .product-card {
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-    width: 280px;
-    padding: 25px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: white; border-radius: 15px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1); width: 280px;
+    padding: 25px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;
   }
+  .product-card:hover { transform: translateY(-8px); box-shadow: 0 10px 18px rgba(0,0,0,0.15); }
+  .product-card img { width: 100%; border-radius: 12px; }
+  .product-card h3 { margin: 18px 0 12px 0; font-weight: 600; }
 
-  .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 18px rgba(0,0,0,0.15);
-  }
-
-  .product-card img {
-    width: 100%;
-    border-radius: 12px;
-  }
-
-  .product-card h3 {
-    margin: 18px 0 12px 0;
-    font-weight: 600;
-  }
-
-  form {
-    max-width: 500px;
-    margin: 0 auto;
-    text-align: left;
-  }
-
+  form { max-width: 500px; margin: 0 auto; text-align: left; }
   form input, form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 15px;
+    width: 100%; padding: 12px; margin-bottom: 15px;
+    border-radius: 8px; border: 1px solid #ccc; font-size: 15px;
   }
+  form button { width: 100%; }
 
-  form button {
-    width: 100%;
-  }
+  .order-form { margin-top: 15px; display: none; }
 
   .video-container {
-    width: 100%;
-    max-width: 700px;
-    margin: 30px auto;
-    text-align: center;
-    border-radius: 15px;
-    overflow: hidden;
+    width: 100%; max-width: 700px; margin: 30px auto;
+    text-align: center; border-radius: 15px; overflow: hidden;
     box-shadow: 0 6px 18px rgba(0,0,0,0.1);
   }
 
   @media(max-width: 700px) {
-    .video-container iframe {
-      width: 100%;
-      height: auto;
-    }
-    nav {
-      gap: 8px;
-    }
-    nav a {
-      padding: 6px 10px;
-      font-size: 14px;
-    }
+    .video-container iframe { width: 100%; height: auto; }
+    nav { gap: 8px; }
+    nav a { padding: 6px 10px; font-size: 14px; }
   }
 
   footer {
-    background-color: #2c3e50;
-    color: white;
-    text-align: center;
-    padding: 25px 15px;
-    margin-top: 60px;
+    background-color: #2c3e50; color: white; text-align: center;
+    padding: 25px 15px; margin-top: 60px;
   }
-
-  footer p {
-    margin: 5px 0;
-    font-size: 14px;
-  }
-
-  footer a {
-    color: #6fa8dc;
-    margin: 0 8px;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    text-decoration: underline;
-  }
+  footer p { margin: 5px 0; font-size: 14px; }
+  footer a { color: #6fa8dc; margin: 0 8px; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
 
 <header>
   <img class="logo" src="bottled_image_logo.png" alt="Bottled Moments Logo">
-  
   <nav>
     <a onclick="scrollToSection('home')">Home</a>
     <a onclick="scrollToSection('buy')">Shop</a>
     <a onclick="scrollToSection('about')">About</a>
     <a onclick="scrollToSection('contact')">Contact</a>
   </nav>
-  
-  <!-- Dark mode switch -->
-  <label class="switch">
-    <input type="checkbox" id="darkToggle">
-    <span class="slider"></span>
-  </label>
+  <label class="switch"><input type="checkbox" id="darkToggle"><span class="slider"></span></label>
 </header>
 
-<!-- Video at top -->
 <div class="video-container">
-  <iframe src="https://player.vimeo.com/video/1110596803" 
-          width="700" height="394" 
-          frameborder="0" 
-          allow="autoplay; fullscreen; picture-in-picture" 
-          allowfullscreen
-          title="Bottled Moments Commercial"></iframe>
+  <iframe src="https://player.vimeo.com/video/1110596803"
+          width="700" height="394"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen title="Bottled Moments Commercial"></iframe>
 </div>
 
-<!-- Main content -->
 <div class="content-container">
   <section id="home">
     <h1>Obtain A Stunning Necklace</h1>
@@ -289,27 +135,58 @@
     <h1>Buy Your Bottled Moment Necklace</h1>
     <p>Choose your favorite design!</p>
     <div class="product-grid">
+      
+      <!-- Product 1 -->
       <div class="product-card">
         <h3>Bottle Necklace</h3> 
         <img src="bottleimage.jpg" alt="Bottle Necklace"/>
         <p>Price: $7</p>
         <p>Includes: Basic Bottle Necklace</p>
         <a href="https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c" target="_blank" class="btn">Buy Now</a>
+        <button class="btn" onclick="showForm('form-bottle')">Order via Form</button>
+        <form id="form-bottle" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
+          <input type="hidden" name="product" value="Bottle Necklace">
+          <label>Name:</label><input type="text" name="name" required>
+          <label>Email:</label><input type="email" name="email" required>
+          <label>Address:</label><textarea name="address" rows="3" required></textarea>
+          <button type="submit" class="btn">Submit Order</button>
+        </form>
       </div>
+
+      <!-- Product 2 -->
       <div class="product-card">
         <h3>Olivia's Special</h3> 
         <img src="customstuff.jpg" alt="Olivia's Special Necklace"/>
         <p>Price: $10</p>
         <p>Includes: Special Necklace</p>
         <a href="https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e" target="_blank" class="btn">Buy Now</a>
+        <button class="btn" onclick="showForm('form-olivia')">Order via Form</button>
+        <form id="form-olivia" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
+          <input type="hidden" name="product" value="Olivia's Special">
+          <label>Name:</label><input type="text" name="name" required>
+          <label>Email:</label><input type="email" name="email" required>
+          <label>Address:</label><textarea name="address" rows="3" required></textarea>
+          <button type="submit" class="btn">Submit Order</button>
+        </form>
       </div>
+
+      <!-- Product 3 -->
       <div class="product-card">
         <h3>VIP Pack</h3>
         <img src="vippackage.jpg" alt="VIP Pack"/>
         <p>Price: $12</p>
         <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
         <a href="https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139" target="_blank" class="btn">Buy Now</a>
+        <button class="btn" onclick="showForm('form-vip')">Order via Form</button>
+        <form id="form-vip" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
+          <input type="hidden" name="product" value="VIP Pack">
+          <label>Name:</label><input type="text" name="name" required>
+          <label>Email:</label><input type="email" name="email" required>
+          <label>Address:</label><textarea name="address" rows="3" required></textarea>
+          <button type="submit" class="btn">Submit Order</button>
+        </form>
       </div>
+
     </div>
   </section>
 
@@ -321,52 +198,35 @@
   <section id="contact">
     <h1>Contact Us</h1>
     <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
-    <form>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-
+    <form action="https://formspree.io/f/your-formspree-endpoint" method="POST">
+      <label>Name:</label><input type="text" name="name" required>
+      <label>Email:</label><input type="email" name="email" required>
+      <label>Message:</label><textarea name="message" rows="5" required></textarea>
       <button type="submit" class="btn">Send Message</button>
     </form>
   </section>
 </div>
 
 <footer>
-  <p>
-    <a href="#home">Home</a> • 
-    <a href="#buy">Shop</a> • 
-    <a href="#about">About</a> • 
-    <a href="#contact">Contact</a>
-  </p>
+  <p><a href="#home">Home</a> • <a href="#buy">Shop</a> • <a href="#about">About</a> • <a href="#contact">Contact</a></p>
 </footer>
 
 <script>
   function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
-
   const body = document.body;
   const toggle = document.getElementById("darkToggle");
-
-  // Load saved theme
-  if (localStorage.getItem("theme") === "dark") {
-    body.classList.add("dark-mode");
-    toggle.checked = true;
-  }
-
+  if (localStorage.getItem("theme") === "dark") { body.classList.add("dark-mode"); toggle.checked = true; }
   toggle.addEventListener("change", () => {
     body.classList.toggle("dark-mode");
-    if (body.classList.contains("dark-mode")) {
-      localStorage.setItem("theme", "dark");
-    } else {
-      localStorage.setItem("theme", "light");
-    }
+    localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
   });
+
+  function showForm(id) {
+    const form = document.getElementById(id);
+    form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+  }
 </script>
 
 </body>
