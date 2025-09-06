@@ -1,71 +1,71 @@
+<!-- ChatGPT was used for some code -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Bottled Moments</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #6fa8dc;
-    --primary-dark: #3d85c6;
-    --text: #333;
+    --primary: #FF7F50;
+    --secondary: #FFB347;
+    --text-dark: #2C2C2C;
     --text-light: #555;
-    --bg-light: #f7f3f0;
-    --bg-accent: #e4f0f7;
-    --bg-dark: #121212;
-    --card-light: #fff;
-    --card-dark: #1f1f1f;
+    --bg-light: #FFF8F0;
+    --bg-dark: #1C1C1C;
+    --card-bg: rgba(255,255,255,0.85);
+    --card-bg-dark: rgba(28,28,28,0.9);
   }
 
   body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, var(--bg-light), var(--bg-accent));
-    color: var(--text);
+    background: linear-gradient(120deg, #FFF8F0, #FFEDE0);
+    color: var(--text-dark);
     transition: background 0.4s, color 0.4s;
   }
+
   body.dark-mode {
-    background: var(--bg-dark);
-    color: #f5f5f5;
+    background: #1C1C1C;
+    color: #EEE;
   }
 
   header {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 15px 40px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    background-color: rgba(255,255,255,0.9);
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
     position: sticky;
-    top: 0; z-index: 1000; backdrop-filter: blur(6px);
-    transition: background 0.3s;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    backdrop-filter: blur(6px);
   }
-  body.dark-mode header { background-color: rgba(18,18,18,0.9); }
 
-  img.logo { width: 150px; height: auto; }
-  nav { display: flex; align-items: center; gap: 20px; }
+  body.dark-mode header { background-color: rgba(28,28,28,0.9); }
+
+  .logo { width: 160px; }
+
+  nav { display: flex; gap: 20px; }
   nav a {
     text-decoration: none;
-    color: var(--text);
+    color: var(--text-dark);
     font-weight: 600;
-    font-size: 15px;
-    padding: 8px 14px;
+    padding: 8px 15px;
     border-radius: 8px;
     transition: all 0.3s;
   }
-  nav a:hover {
-    background-color: var(--primary);
-    color: #fff;
-  }
-  body.dark-mode nav a { color: #f5f5f5; }
+  nav a:hover { background: var(--primary); color: white; }
 
-  /* Sun/Moon toggle */
+  body.dark-mode nav a { color: #EEE; }
+
   .switch { position: relative; display: inline-block; width: 54px; height: 28px; margin-left: 20px; }
   .switch input { opacity: 0; width: 0; height: 0; }
   .slider {
     position: absolute; inset: 0; cursor: pointer;
-    background-color: #f1c40f; border-radius: 28px;
+    background-color: #FFD700; border-radius: 28px;
     transition: 0.4s;
   }
   .slider:before {
@@ -78,83 +78,107 @@
   input:checked + .slider:before { transform: translateX(26px); content: "🌙"; }
 
   section {
-    padding: 90px 20px;
-    text-align: center;
-    max-width: 950px;
+    padding: 100px 20px 60px;
+    max-width: 1000px;
     margin: 0 auto;
+    position: relative;
   }
+
   h1 {
-    font-size: 2.4em;
-    font-weight: 600;
-    color: #2c3e50;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8em;
     margin-bottom: 20px;
+    color: var(--text-dark);
   }
-  body.dark-mode h1 { color: #eaeaea; }
+  body.dark-mode h1 { color: #EEE; }
+
   p {
     font-size: 17px;
-    margin-bottom: 24px;
     line-height: 1.6;
     color: var(--text-light);
+    margin-bottom: 30px;
   }
-  body.dark-mode p { color: #ccc; }
+  body.dark-mode p { color: #CCC; }
 
   .btn {
-    background-color: var(--primary);
-    color: white; padding: 12px 26px;
-    border: none; border-radius: 30px;
-    font-size: 15px; font-weight: 600;
-    transition: all 0.3s ease; cursor: pointer;
-    text-decoration: none; display: inline-block;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
   }
   .btn:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
   }
 
   .product-grid {
-    display: flex; justify-content: center; flex-wrap: wrap;
-    gap: 35px; margin-top: 40px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;
   }
+
   .product-card {
-    background-color: var(--card-light);
-    border-radius: 16px;
-    box-shadow: 0 5px 14px rgba(0,0,0,0.1);
-    width: 270px; padding: 24px;
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    width: 280px; padding: 25px;
     text-align: center;
-    transition: transform 0.25s, box-shadow 0.25s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
   }
-  body.dark-mode .product-card { background-color: var(--card-dark); }
-  .product-card:hover { transform: translateY(-6px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
-  .product-card img { width: 100%; border-radius: 12px; }
-  .product-card h3 { margin: 16px 0 10px; font-weight: 600; }
+  body.dark-mode .product-card { background-color: var(--card-bg-dark); }
 
-  form {
-    max-width: 500px; margin: 0 auto; text-align: left;
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   }
-  form input, form textarea {
-    width: 100%; padding: 12px; margin-bottom: 15px;
-    border-radius: 8px; border: 1px solid #ccc;
-    font-size: 15px;
-  }
-  body.dark-mode form input, body.dark-mode form textarea { background: #2a2a2a; border: 1px solid #555; color: #f5f5f5; }
-  form button { width: 100%; }
 
-  .order-form { margin-top: 15px; display: none; }
+  .product-card img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+  .product-card h3 { margin-bottom: 10px; font-weight: 700; font-size: 1.2em; }
 
   .video-container {
-    width: 100%; max-width: 720px; margin: 40px auto;
-    text-align: center; border-radius: 16px; overflow: hidden;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    max-width: 720px;
+    margin: 50px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   }
 
   footer {
-    background-color: #2c3e50; color: white; text-align: center;
-    padding: 25px 15px; margin-top: 70px;
+    background: #2C2C2C;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
   }
-  footer p { margin: 5px 0; font-size: 14px; }
   footer a { color: var(--primary); margin: 0 10px; text-decoration: none; }
   footer a:hover { text-decoration: underline; }
+
+  /* Section separators */
+  .wave {
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+  }
+  .wave svg {
+    position: absolute;
+    top: -40px;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Responsive */
+  @media(max-width: 768px) {
+    .product-grid { gap: 25px; }
+    header { padding: 12px 20px; }
+    h1 { font-size: 2em; }
+  }
 </style>
 </head>
 <body>
@@ -171,104 +195,65 @@
 </header>
 
 <div class="video-container">
-  <iframe src="https://player.vimeo.com/video/1110596803"
-          width="700" height="394"
-          frameborder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen title="Bottled Moments Commercial"></iframe>
+  <iframe src="https://player.vimeo.com/video/1110596803" width="100%" height="394" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Bottled Moments Commercial"></iframe>
 </div>
 
-<div class="content-container">
-  <section id="home">
-    <h1>Obtain A Stunning Necklace</h1>
-    <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
-    <a href="#buy" class="btn">Start Your Bottled Moment</a>
-  </section>
+<section id="home">
+  <h1>Obtain A Stunning Necklace</h1>
+  <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
+  <a href="#buy" class="btn">Start Your Bottled Moment</a>
+</section>
 
-  <section id="buy">
-    <h1>Buy Your Bottled Moment Necklace</h1>
-    <p>Choose your favorite design!</p>
-    <div class="product-grid">
+<div class="wave">
+  <svg viewBox="0 0 1440 80"><path fill="#FFEDE0" d="M0,32L60,37.3C120,43,240,53,360,69.3C480,85,600,107,720,117.3C840,128,960,128,1080,122.7C1200,117,1320,107,1380,101.3L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+</div>
 
-      <!-- Product 1 -->
-      <div class="product-card">
-        <h3>Bottle Necklace</h3> 
-        <img src="bottleimage.jpg" alt="Bottle Necklace"/>
-        <p>Price: $7</p>
-        <p>Includes: Basic Bottle Necklace</p>
-        <a href="https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c" target="_blank" class="btn">Buy Now</a>
-        <button class="btn" onclick="showForm('form-bottle')">Order via Form</button>
-        <form id="form-bottle" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
-          <input type="hidden" name="product" value="Bottle Necklace">
-          <label>Name:</label><input type="text" name="name" required>
-          <label>Email:</label><input type="email" name="email" required>
-          <label>Address:</label><textarea name="address" rows="3" required></textarea>
-          <button type="submit" class="btn">Submit Order</button>
-        </form>
-      </div>
-
-      <!-- Product 2 -->
-      <div class="product-card">
-        <h3>Olivia's Special</h3> 
-        <img src="customstuff.jpg" alt="Olivia's Special Necklace"/>
-        <p>Price: $10</p>
-        <p>Includes: Special Necklace</p>
-        <a href="https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e" target="_blank" class="btn">Buy Now</a>
-        <button class="btn" onclick="showForm('form-olivia')">Order via Form</button>
-        <form id="form-olivia" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
-          <input type="hidden" name="product" value="Olivia's Special">
-          <label>Name:</label><input type="text" name="name" required>
-          <label>Email:</label><input type="email" name="email" required>
-          <label>Address:</label><textarea name="address" rows="3" required></textarea>
-          <button type="submit" class="btn">Submit Order</button>
-        </form>
-      </div>
-
-      <!-- Product 3 -->
-      <div class="product-card">
-        <h3>VIP Pack</h3>
-        <img src="vippackage.jpg" alt="VIP Pack"/>
-        <p>Price: $12</p>
-        <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
-        <a href="https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139" target="_blank" class="btn">Buy Now</a>
-        <button class="btn" onclick="showForm('form-vip')">Order via Form</button>
-        <form id="form-vip" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
-          <input type="hidden" name="product" value="VIP Pack">
-          <label>Name:</label><input type="text" name="name" required>
-          <label>Email:</label><input type="email" name="email" required>
-          <label>Address:</label><textarea name="address" rows="3" required></textarea>
-          <button type="submit" class="btn">Submit Order</button>
-        </form>
-      </div>
-
+<section id="buy">
+  <h1>Buy Your Bottled Moment Necklace</h1>
+  <p>Choose your favorite design!</p>
+  <div class="product-grid">
+    <div class="product-card">
+      <h3>Bottle Necklace</h3>
+      <img src="bottleimage.jpg" alt="Bottle Necklace">
+      <p>Price: $7</p>
+      <p>Includes: Basic Bottle Necklace</p>
+      <a href="https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c" target="_blank" class="btn">Buy Now</a>
+      <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
     </div>
-  </section>
+    <div class="product-card">
+      <h3>Olivia's Special</h3>
+      <img src="customstuff.jpg" alt="Olivia's Special Necklace">
+      <p>Price: $10</p>
+      <p>Includes: Special Necklace</p>
+      <a href="https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e" target="_blank" class="btn">Buy Now</a>
+      <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
+    </div>
+    <div class="product-card">
+      <h3>VIP Pack</h3>
+      <img src="vippackage.jpg" alt="VIP Pack">
+      <p>Price: $12</p>
+      <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
+      <a href="https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139" target="_blank" class="btn">Buy Now</a>
+      <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
+    </div>
+  </div>
+</section>
 
-  <section id="about">
-    <h1>About Bottled Moments</h1>
-    <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments.</p>
-  </section>
+<section id="about">
+  <h1>About Bottled Moments</h1>
+  <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments.</p>
+</section>
 
-  <section id="contact">
-    <h1>Contact Us</h1>
-    <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
-    <form action="https://formspree.io/f/your-formspree-endpoint" method="POST">
-      <label>Name:</label><input type="text" name="name" required>
-      <label>Email:</label><input type="email" name="email" required>
-      <label>Message:</label><textarea name="message" rows="5" required></textarea>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
-  </section>
-</div>
+<section id="contact">
+  <h1>Contact Us</h1>
+  <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
+</section>
 
 <footer>
   <p><a href="#home">Home</a> • <a href="#buy">Shop</a> • <a href="#about">About</a> • <a href="#contact">Contact</a></p>
 </footer>
 
 <script>
-  function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-  }
   const body = document.body;
   const toggle = document.getElementById("darkToggle");
   if (localStorage.getItem("theme") === "dark") { body.classList.add("dark-mode"); toggle.checked = true; }
@@ -277,9 +262,8 @@
     localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
   });
 
-  function showForm(id) {
-    const form = document.getElementById(id);
-    form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
 </script>
 
