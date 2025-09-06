@@ -185,6 +185,80 @@
     <a href="#buy" class="btn">Start Your Bottled Moment</a>
   </section>
 
+  <section id="buy">
+    <h1>Buy Your Bottled Moment Necklace</h1>
+    <p>Choose your favorite design!</p>
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <h3>Bottle Necklace</h3> 
+        <img src="bottleimage.jpg" alt="Bottle Necklace"/>
+        <p>Price: $7</p>
+        <p>Includes: Basic Bottle Necklace</p>
+        <a href="https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c" target="_blank" class="btn">Buy Now</a>
+        <button class="btn" onclick="showForm('form-bottle')">Order via Form</button>
+        <form id="form-bottle" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
+          <input type="hidden" name="product" value="Bottle Necklace">
+          <label>Name:</label><input type="text" name="name" required>
+          <label>Email:</label><input type="email" name="email" required>
+          <label>Address:</label><textarea name="address" rows="3" required></textarea>
+          <button type="submit" class="btn">Submit Order</button>
+        </form>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <h3>Olivia's Special</h3> 
+        <img src="customstuff.jpg" alt="Olivia's Special Necklace"/>
+        <p>Price: $10</p>
+        <p>Includes: Special Necklace</p>
+        <a href="https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e" target="_blank" class="btn">Buy Now</a>
+        <button class="btn" onclick="showForm('form-olivia')">Order via Form</button>
+        <form id="form-olivia" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
+          <input type="hidden" name="product" value="Olivia's Special">
+          <label>Name:</label><input type="text" name="name" required>
+          <label>Email:</label><input type="email" name="email" required>
+          <label>Address:</label><textarea name="address" rows="3" required></textarea>
+          <button type="submit" class="btn">Submit Order</button>
+        </form>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <h3>VIP Pack</h3>
+        <img src="vippackage.jpg" alt="VIP Pack"/>
+        <p>Price: $12</p>
+        <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
+        <a href="https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139" target="_blank" class="btn">Buy Now</a>
+        <button class="btn" onclick="showForm('form-vip')">Order via Form</button>
+        <form id="form-vip" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
+          <input type="hidden" name="product" value="VIP Pack">
+          <label>Name:</label><input type="text" name="name" required>
+          <label>Email:</label><input type="email" name="email" required>
+          <label>Address:</label><textarea name="address" rows="3" required></textarea>
+          <button type="submit" class="btn">Submit Order</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <h1>About Bottled Moments</h1>
+    <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments.</p>
+  </section>
+
+  <section id="contact">
+    <h1>Contact Us</h1>
+    <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
+    <form action="https://formspree.io/f/your-formspree-endpoint" method="POST">
+      <label>Name:</label><input type="text" name="name" required>
+      <label>Email:</label><input type="email" name="email" required>
+      <label>Message:</label><textarea name="message" rows="5" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
 </div>
 
 <footer>
