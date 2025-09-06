@@ -5,101 +5,155 @@
 <title>Bottled Moments</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --primary: #6fa8dc;
+    --primary-dark: #3d85c6;
+    --text: #333;
+    --text-light: #555;
+    --bg-light: #f7f3f0;
+    --bg-accent: #e4f0f7;
+    --bg-dark: #121212;
+    --card-light: #fff;
+    --card-dark: #1f1f1f;
+  }
+
   body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #f7f3f0, #e4f0f7);
-    color: #333;
+    background: linear-gradient(to bottom, var(--bg-light), var(--bg-accent));
+    color: var(--text);
     transition: background 0.4s, color 0.4s;
   }
-  body.dark-mode { background: #121212; color: #f5f5f5; }
+  body.dark-mode {
+    background: var(--bg-dark);
+    color: #f5f5f5;
+  }
 
   header {
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 15px 40px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: sticky;
     top: 0; z-index: 1000; backdrop-filter: blur(6px);
+    transition: background 0.3s;
   }
-  img.logo { width: 160px; height: auto; }
-  nav { display: flex; align-items: center; gap: 15px; }
+  body.dark-mode header { background-color: rgba(18,18,18,0.9); }
+
+  img.logo { width: 150px; height: auto; }
+  nav { display: flex; align-items: center; gap: 20px; }
   nav a {
-    text-decoration: none; color: #333; font-weight: 600;
-    font-size: 15px; padding: 10px 15px; border-radius: 8px;
-    transition: all 0.3s; cursor: pointer;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.3s;
   }
-  nav a:hover { background-color: #6fa8dc; color: white; }
+  nav a:hover {
+    background-color: var(--primary);
+    color: #fff;
+  }
+  body.dark-mode nav a { color: #f5f5f5; }
 
   /* Sun/Moon toggle */
-  .switch { position: relative; display: inline-block; width: 60px; height: 30px; margin-left: 20px; }
+  .switch { position: relative; display: inline-block; width: 54px; height: 28px; margin-left: 20px; }
   .switch input { opacity: 0; width: 0; height: 0; }
   .slider {
-    position: absolute; cursor: pointer; inset: 0; background-color: #f1c40f;
-    transition: 0.4s; border-radius: 30px;
+    position: absolute; inset: 0; cursor: pointer;
+    background-color: #f1c40f; border-radius: 28px;
+    transition: 0.4s;
   }
   .slider:before {
-    position: absolute; content: "☀️"; height: 24px; width: 24px; left: 3px; bottom: 3px;
-    background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 14px; transition: 0.4s;
+    content: "☀️"; position: absolute; height: 22px; width: 22px;
+    left: 3px; bottom: 3px; background-color: white;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; transition: 0.4s;
   }
   input:checked + .slider { background-color: #2c3e50; }
-  input:checked + .slider:before { transform: translateX(30px); content: "🌙"; }
+  input:checked + .slider:before { transform: translateX(26px); content: "🌙"; }
 
-  section { padding: 80px 20px; text-align: center; max-width: 1000px; margin: 0 auto; }
-  h1 { font-size: 2.5em; font-weight: 600; color: #2c3e50; margin-bottom: 20px; }
-  p { font-size: 18px; margin-bottom: 25px; line-height: 1.6; }
+  section {
+    padding: 90px 20px;
+    text-align: center;
+    max-width: 950px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 2.4em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  body.dark-mode h1 { color: #eaeaea; }
+  p {
+    font-size: 17px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+    color: var(--text-light);
+  }
+  body.dark-mode p { color: #ccc; }
 
   .btn {
-    background-color: #6fa8dc; color: white; padding: 12px 28px;
-    border: none; border-radius: 30px; font-size: 16px; font-weight: 600;
-    transition: all 0.3s; cursor: pointer; display: inline-block; text-decoration: none;
+    background-color: var(--primary);
+    color: white; padding: 12px 26px;
+    border: none; border-radius: 30px;
+    font-size: 15px; font-weight: 600;
+    transition: all 0.3s ease; cursor: pointer;
+    text-decoration: none; display: inline-block;
   }
   .btn:hover {
-    background-color: #3d85c6; transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
 
-  .product-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; margin-top: 40px; }
+  .product-grid {
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 35px; margin-top: 40px;
+  }
   .product-card {
-    background-color: white; border-radius: 15px;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.1); width: 280px;
-    padding: 25px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;
+    background-color: var(--card-light);
+    border-radius: 16px;
+    box-shadow: 0 5px 14px rgba(0,0,0,0.1);
+    width: 270px; padding: 24px;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s;
   }
-  .product-card:hover { transform: translateY(-8px); box-shadow: 0 10px 18px rgba(0,0,0,0.15); }
+  body.dark-mode .product-card { background-color: var(--card-dark); }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
   .product-card img { width: 100%; border-radius: 12px; }
-  .product-card h3 { margin: 18px 0 12px 0; font-weight: 600; }
+  .product-card h3 { margin: 16px 0 10px; font-weight: 600; }
 
-  form { max-width: 500px; margin: 0 auto; text-align: left; }
+  form {
+    max-width: 500px; margin: 0 auto; text-align: left;
+  }
   form input, form textarea {
     width: 100%; padding: 12px; margin-bottom: 15px;
-    border-radius: 8px; border: 1px solid #ccc; font-size: 15px;
+    border-radius: 8px; border: 1px solid #ccc;
+    font-size: 15px;
   }
+  body.dark-mode form input, body.dark-mode form textarea { background: #2a2a2a; border: 1px solid #555; color: #f5f5f5; }
   form button { width: 100%; }
 
   .order-form { margin-top: 15px; display: none; }
 
   .video-container {
-    width: 100%; max-width: 700px; margin: 30px auto;
-    text-align: center; border-radius: 15px; overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-  }
-
-  @media(max-width: 700px) {
-    .video-container iframe { width: 100%; height: auto; }
-    nav { gap: 8px; }
-    nav a { padding: 6px 10px; font-size: 14px; }
+    width: 100%; max-width: 720px; margin: 40px auto;
+    text-align: center; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   }
 
   footer {
     background-color: #2c3e50; color: white; text-align: center;
-    padding: 25px 15px; margin-top: 60px;
+    padding: 25px 15px; margin-top: 70px;
   }
   footer p { margin: 5px 0; font-size: 14px; }
-  footer a { color: #6fa8dc; margin: 0 8px; text-decoration: none; }
+  footer a { color: var(--primary); margin: 0 10px; text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 </style>
 </head>
@@ -131,80 +185,6 @@
     <a href="#buy" class="btn">Start Your Bottled Moment</a>
   </section>
 
-  <section id="buy">
-    <h1>Buy Your Bottled Moment Necklace</h1>
-    <p>Choose your favorite design!</p>
-    <div class="product-grid">
-      
-      <!-- Product 1 -->
-      <div class="product-card">
-        <h3>Bottle Necklace</h3> 
-        <img src="bottleimage.jpg" alt="Bottle Necklace"/>
-        <p>Price: $7</p>
-        <p>Includes: Basic Bottle Necklace</p>
-        <a href="https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c" target="_blank" class="btn">Buy Now</a>
-        <button class="btn" onclick="showForm('form-bottle')">Order via Form</button>
-        <form id="form-bottle" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
-          <input type="hidden" name="product" value="Bottle Necklace">
-          <label>Name:</label><input type="text" name="name" required>
-          <label>Email:</label><input type="email" name="email" required>
-          <label>Address:</label><textarea name="address" rows="3" required></textarea>
-          <button type="submit" class="btn">Submit Order</button>
-        </form>
-      </div>
-
-      <!-- Product 2 -->
-      <div class="product-card">
-        <h3>Olivia's Special</h3> 
-        <img src="customstuff.jpg" alt="Olivia's Special Necklace"/>
-        <p>Price: $10</p>
-        <p>Includes: Special Necklace</p>
-        <a href="https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e" target="_blank" class="btn">Buy Now</a>
-        <button class="btn" onclick="showForm('form-olivia')">Order via Form</button>
-        <form id="form-olivia" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
-          <input type="hidden" name="product" value="Olivia's Special">
-          <label>Name:</label><input type="text" name="name" required>
-          <label>Email:</label><input type="email" name="email" required>
-          <label>Address:</label><textarea name="address" rows="3" required></textarea>
-          <button type="submit" class="btn">Submit Order</button>
-        </form>
-      </div>
-
-      <!-- Product 3 -->
-      <div class="product-card">
-        <h3>VIP Pack</h3>
-        <img src="vippackage.jpg" alt="VIP Pack"/>
-        <p>Price: $12</p>
-        <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
-        <a href="https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139" target="_blank" class="btn">Buy Now</a>
-        <button class="btn" onclick="showForm('form-vip')">Order via Form</button>
-        <form id="form-vip" class="order-form" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
-          <input type="hidden" name="product" value="VIP Pack">
-          <label>Name:</label><input type="text" name="name" required>
-          <label>Email:</label><input type="email" name="email" required>
-          <label>Address:</label><textarea name="address" rows="3" required></textarea>
-          <button type="submit" class="btn">Submit Order</button>
-        </form>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="about">
-    <h1>About Bottled Moments</h1>
-    <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments.</p>
-  </section>
-
-  <section id="contact">
-    <h1>Contact Us</h1>
-    <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
-    <form action="https://formspree.io/f/your-formspree-endpoint" method="POST">
-      <label>Name:</label><input type="text" name="name" required>
-      <label>Email:</label><input type="email" name="email" required>
-      <label>Message:</label><textarea name="message" rows="5" required></textarea>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
-  </section>
 </div>
 
 <footer>
