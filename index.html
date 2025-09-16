@@ -207,8 +207,6 @@
         <img src="bottleimage.jpg" alt="Bottle Necklace"/>
         <p>Price: $7</p>
         <p>Includes: Basic Bottle Necklace</p>
-        <a href="https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c" target="_blank" class="btn">Buy Now</a>
-        <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
       </div>
 
       <!-- Product 2 -->
@@ -217,8 +215,6 @@
         <img src="customstuff.jpg" alt="Olivia's Special Necklace"/>
         <p>Price: $10</p>
         <p>Includes: Special Necklace</p>
-        <a href="https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e" target="_blank" class="btn">Buy Now</a>
-        <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
       </div>
 
       <!-- Product 3 -->
@@ -227,8 +223,6 @@
         <img src="vippackage.jpg" alt="VIP Pack"/>
         <p>Price: $12</p>
         <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
-        <a href="https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139" target="_blank" class="btn">Buy Now</a>
-        <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Order via Form</a>
       </div>
 
     </div>
@@ -258,12 +252,140 @@
   function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
+
+  // Dark mode toggle
   const body = document.body;
   const toggle = document.getElementById("darkToggle");
-  if (localStorage.getItem("theme") === "dark") { body.classList.add("dark-mode"); toggle.checked = true; }
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    toggle.checked = true;
+  }
   toggle.addEventListener("change", () => {
     body.classList.toggle("dark-mode");
     localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+  });
+
+  // --- CART LOGIC ---
+  const cartBtn = document.createElement("button");
+  cartBtn.innerText = "🛒 Cart (0)";
+  cartBtn.className = "btn";
+  document.querySelector("header").appendChild(cartBtn);
+
+  const cartMenu = document.createElement("div");
+  cartMenu.style.position = "fixed";
+  cartMenu.style.top = "70px";
+  cartMenu.style.right = "20px";
+  cartMenu.style.width = "300px";
+  cartMenu.style.background = "#fff";
+  cartMenu.style.border = "1px solid #ccc";
+  cartMenu.style.borderRadius = "12px";
+  cartMenu.style.padding = "20px";
+  cartMenu.style.boxShadow = "0 6px 18px rgba(0,0,0,0.2)";
+  cartMenu.style.display = "none";
+  cartMenu.style.zIndex = "2000";
+  cartMenu.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+  cartMenu.style.transform = "translateY(-20px)";
+  cartMenu.style.opacity = "0";
+  document.body.appendChild(cartMenu);
+
+  let cart = [];
+
+  const products = {
+    "Bottle Necklace": {
+      price: 7,
+      paylink: "https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c"
+    },
+    "Olivia's Special": {
+      price: 10,
+      paylink: "https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e"
+    },
+    "VIP Pack": {
+      price: 12,
+      paylink: "https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139"
+    }
+  };
+
+  // Add "Add to Cart" buttons
+  document.querySelectorAll(".product-card").forEach(card => {
+    const title = card.querySelector("h3").innerText.trim();
+    const btn = document.createElement("button");
+    btn.className = "btn";
+    btn.innerText = "Add to Cart";
+    btn.onclick = () => addToCart(title);
+    card.appendChild(btn);
+  });
+
+  function addToCart(product) {
+    cart.push(product);
+    updateCart();
+    showCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  function updateCart() {
+    cartBtn.innerText = `🛒 Cart (${cart.length})`;
+
+    if (cart.length === 0) {
+      cartMenu.innerHTML = "<p>Your cart is empty.</p>";
+      return;
+    }
+
+    let html = "<h3>Your Cart</h3><ul style='padding-left:15px; text-align:left;'>";
+    cart.forEach((item, i) => {
+      html += `<li>${item} - $${products[item].price} 
+        <button style="margin-left:8px; background:red; color:white; border:none; border-radius:5px; padding:2px 6px; cursor:pointer;" onclick="removeFromCart(${i})">x</button>
+      </li>`;
+    });
+    html += "</ul>";
+
+    // Always show Google Form
+    html += `<h4>Checkout:</h4>
+             <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Checkout with Google Form</a><br><br>`;
+
+    // PayLinks
+    if (cart.length === 1) {
+      html += `<a href="${products[cart[0]].paylink}" target="_blank" class="btn">Pay with Card (${cart[0]})</a>`;
+    } else {
+      html += `<p>Pay individually with these links:</p>`;
+      [...new Set(cart)].forEach(item => {
+        html += `<a href="${products[item].paylink}" target="_blank" class="btn">${item} PayLink</a><br>`;
+      });
+    }
+
+    cartMenu.innerHTML = html;
+  }
+
+  function showCart() {
+    cartMenu.style.display = "block";
+    setTimeout(() => {
+      cartMenu.style.transform = "translateY(0)";
+      cartMenu.style.opacity = "1";
+    }, 10);
+  }
+
+  function hideCart() {
+    cartMenu.style.transform = "translateY(-20px)";
+    cartMenu.style.opacity = "0";
+    setTimeout(() => { cartMenu.style.display = "none"; }, 300);
+  }
+
+  cartBtn.onclick = () => {
+    if (cartMenu.style.display === "block") {
+      hideCart();
+    } else {
+      showCart();
+    }
+  };
+
+  // Hide cart if clicked outside
+  document.addEventListener("click", (e) => {
+    if (!cartMenu.contains(e.target) && !cartBtn.contains(e.target)) {
+      hideCart();
+    }
   });
 </script>
 
