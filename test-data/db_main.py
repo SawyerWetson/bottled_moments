@@ -6,9 +6,6 @@ import sys
 conn = sqlite3.connect('main.db')
 cursor = conn.cursor()
 
-# Create the table if it doesn't exist
-# Note: UNIQUE CHAR is not a valid SQLite data type. TEXT or VARCHAR is more appropriate.
-# AUTOINCREMENT is typically used with INTEGER PRIMARY KEY.
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS inventory (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -17,13 +14,12 @@ cursor.execute('''
         bottlestock_special TEXT UNIQUE
     )
 ''')
-conn.commit() # Commit the table creation
-
+conn.commit() 
 def main():
-    # Example data to insert
-    bottlestock_small_val = 100 # Example integer value
-    bottlestock_large_val = 50  # Example integer value
-    bottlestock_special_val = "Limited Edition" # Example text value
+
+    bottlestock_small_val = 100 
+    bottlestock_large_val = 50  
+    bottlestock_special_val = "Olivia's Special"
 
     # Insert data into the table
     try:
@@ -38,7 +34,7 @@ def main():
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-    # You can also retrieve data here if needed
+    
     cursor.execute("SELECT * FROM inventory")
     rows = cursor.fetchall()
     print("\nCurrent inventory:")
