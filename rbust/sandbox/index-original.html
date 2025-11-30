@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bottled Moments</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<!-- ✅ Favicon -->
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<style>
+  :root {
+    --primary: #6C5B7B;
+    --secondary: #FF7F50;
+    --accent: #FFB347;
+    --bg-light: #fdfdfd;
+    --bg-dark: #121212;
+    --card-light: #fff;
+    --card-dark: #1f1f1f;
+    --text: #333;
+    --text-light: #555;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-light);
+    color: var(--text);
+    overflow-x: hidden;
+    transition: background 0.4s, color 0.4s;
+    position: relative;
+    z-index: 1;
+  }
+  body.dark-mode {
+    background: var(--bg-dark);
+    color: #f5f5f5;
+  }
+
+  header {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0; z-index: 1000; backdrop-filter: blur(6px);
+  }
+  body.dark-mode header { background-color: rgba(18,18,18,0.9); }
+
+  img.logo { width: 140px; height: auto; }
+  nav { display: flex; align-items: center; gap: 20px; }
+  nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+  nav a:hover {
+    background-color: var(--primary);
+    color: #fff;
+  }
+  body.dark-mode nav a { color: #f5f5f5; }
+
+  /* Dark mode toggle */
+  .switch { position: relative; display: inline-block; width: 54px; height: 28px; margin-left: 20px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider {
+    position: absolute; inset: 0; cursor: pointer;
+    background-color: #f1c40f; border-radius: 28px;
+    transition: 0.4s;
+  }
+  .slider:before {
+    content: "☀️"; position: absolute; height: 22px; width: 22px;
+    left: 3px; bottom: 3px; background-color: white;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; transition: 0.4s;
+  }
+  input:checked + .slider { background-color: #2c3e50; }
+  input:checked + .slider:before { transform: translateX(26px); content: "🌙"; }
+
+  section {
+    padding: 90px 20px;
+    text-align: center;
+    max-width: 950px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  body.dark-mode h1 { color: #eaeaea; }
+  p {
+    font-size: 17px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+    color: var(--text-light);
+  }
+  body.dark-mode p { color: #ccc; }
+
+  .btn {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    color: white; padding: 12px 26px;
+    border: none; border-radius: 30px;
+    font-size: 15px; font-weight: 600;
+    transition: all 0.3s ease; cursor: pointer;
+    text-decoration: none; display: inline-block;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .product-grid {
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 35px; margin-top: 40px;
+  }
+  .product-card {
+    background-color: var(--card-light);
+    border-radius: 18px;
+    box-shadow: 0 5px 14px rgba(0,0,0,0.1);
+    width: 270px; padding: 24px;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    z-index: 2;
+  }
+  body.dark-mode .product-card { background-color: var(--card-dark); }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
+  .product-card img { width: 100%; border-radius: 12px; }
+  .product-card h3 { margin: 16px 0 10px; font-weight: 600; }
+
+  .video-container {
+    width: 100%; max-width: 720px; margin: 40px auto;
+    text-align: center; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    z-index: 2; position: relative;
+  }
+
+  footer {
+    background-color: #2c3e50; color: white; text-align: center;
+    padding: 25px 15px; margin-top: 70px; position: relative; z-index: 2;
+  }
+  footer p { margin: 5px 0; font-size: 14px; }
+  footer a { color: var(--accent); margin: 0 10px; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* Floating artistic shapes at bottom */
+  .shape {
+    position: fixed;
+    bottom: -60px;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: float 8s infinite alternate;
+    z-index: 0;
+  }
+  .shape1 { width: 160px; height: 160px; background: var(--secondary); left: 15%; }
+  .shape2 { width: 220px; height: 220px; background: var(--accent); right: 20%; animation-duration: 10s; }
+  .shape3 { width: 100px; height: 100px; background: var(--primary); left: 60%; animation-duration: 12s; }
+
+  @keyframes float {
+    0%   { transform: translateY(0px) }
+    100% { transform: translateY(-40px) }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="logo" src="bottled_image_logo.png" alt="Bottled Moments Logo">
+  <nav>
+    <a onclick="scrollToSection('home')">Home</a>
+    <a onclick="scrollToSection('buy')">Shop</a>
+    <a onclick="scrollToSection('about')">About</a>
+    <a onclick="scrollToSection('contact')">Contact</a>
+  </nav>
+  <label class="switch"><input type="checkbox" id="darkToggle"><span class="slider"></span></label>
+</header>
+
+<div class="video-container">
+  <iframe src="https://player.vimeo.com/video/1110596803"
+          width="700" height="394"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen title="Bottled Moments Commercial"></iframe>
+</div>
+<div class="content-container">
+  <section id="home">
+    <h1>Obtain A Stunning Necklace</h1>
+    <p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10 — capture your special moments today!</p>
+    <a href="#buy" class="btn">Start Your Bottled Moment</a>
+  </section>
+
+  <section id="buy">
+    <h1>Buy Your Bottled Moment Necklace</h1>
+    <p>Choose your favorite design!</p>
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <h3>Bottle Necklace</h3> 
+        <img src="bottleimage.jpg" alt="Bottle Necklace"/>
+        <p>Price: $7</p>
+        <p>Includes: Basic Bottle Necklace</p>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <h3>Olivia's Special</h3> 
+        <img src="customstuff.jpg" alt="Olivia's Special Necklace"/>
+        <p>Price: $10</p>
+        <p>Includes: Special Necklace</p>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <h3>VIP Pack</h3>
+        <img src="vippackage.jpg" alt="VIP Pack"/>
+        <p>Price: $12 </p>
+        <p>Includes: One Large Bottle Necklace, one rubber duck, and one small bottle necklace</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <h1>About Bottled Moments</h1>
+    <p>We are a group of creative 6th and 7th graders who love making beautiful necklaces that capture and celebrate precious moments.</p>
+  </section>
+
+  <section id="contact">
+    <h1>Contact Us</h1>
+    <p>Have questions or ideas? Reach out to us at <a href="mailto:sawyer.wetson@gmail.com">sawyer.wetson@gmail.com</a></p>
+  </section>
+</div>
+
+<footer>
+  <p><a href="#home">Home</a> • <a href="#buy">Shop</a> • <a href="#about">About</a> • <a href="#contact">Contact</a></p>
+</footer>
+
+<!-- Floating shapes -->
+<div class="shape shape1"></div>
+<div class="shape shape2"></div>
+<div class="shape shape3"></div>
+
+<script>
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Dark mode toggle
+  const body = document.body;
+  const toggle = document.getElementById("darkToggle");
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    toggle.checked = true;
+  }
+  toggle.addEventListener("change", () => {
+    body.classList.toggle("dark-mode");
+    localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+  });
+
+  // --- CART LOGIC ---
+  const cartBtn = document.createElement("button");
+  cartBtn.innerText = "🛒 Cart (0)";
+  cartBtn.className = "btn";
+  document.querySelector("header").appendChild(cartBtn);
+
+  const cartMenu = document.createElement("div");
+  cartMenu.style.position = "fixed";
+  cartMenu.style.top = "70px";
+  cartMenu.style.right = "20px";
+  cartMenu.style.width = "300px";
+  cartMenu.style.background = "#fff";
+  cartMenu.style.border = "1px solid #ccc";
+  cartMenu.style.borderRadius = "12px";
+  cartMenu.style.padding = "20px";
+  cartMenu.style.boxShadow = "0 6px 18px rgba(0,0,0,0.2)";
+  cartMenu.style.display = "none";
+  cartMenu.style.zIndex = "2000";
+  cartMenu.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+  cartMenu.style.transform = "translateY(-20px)";
+  cartMenu.style.opacity = "0";
+  document.body.appendChild(cartMenu);
+
+  let cart = [];
+
+  const products = {
+    "Bottle Necklace": {
+      price: 7,
+      paylink: "https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c"
+    },
+    "Olivia's Special": {
+      price: 10,
+      paylink: "https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e"
+    },
+    "VIP Pack": {
+      price: 12,
+      paylink: "https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139"
+    }
+  };
+
+  // Add "Add to Cart" buttons
+  document.querySelectorAll(".product-card").forEach(card => {
+    const title = card.querySelector("h3").innerText.trim();
+    const btn = document.createElement("button");
+    btn.className = "btn";
+    btn.innerText = "Add to Cart";
+    btn.onclick = () => addToCart(title);
+    card.appendChild(btn);
+  });
+
+  function addToCart(product) {
+    cart.push(product);
+    updateCart();
+    showCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  function updateCart() {
+    cartBtn.innerText = `🛒 Cart (${cart.length})`;
+
+    if (cart.length === 0) {
+      cartMenu.innerHTML = "<p>Your cart is empty.</p>";
+      return;
+    }
+
+    let html = "<h3>Your Cart</h3><ul style='padding-left:15px; text-align:left;'>";
+    cart.forEach((item, i) => {
+      html += `<li>${item} - $${products[item].price} 
+        <button style="margin-left:8px; background:red; color:white; border:none; border-radius:5px; padding:2px 6px; cursor:pointer;" onclick="removeFromCart(${i})">x</button>
+      </li>`;
+    });
+    html += "</ul>";
+
+    // Always show Google Form
+    html += `<h4>Checkout:</h4>
+             <a href="https://forms.gle/t1sBFkw9apV52avC7" target="_blank" class="btn">Checkout with Google Form</a><br><br>`;
+
+    // PayLinks
+    if (cart.length === 1) {
+      html += `<a href="${products[cart[0]].paylink}" target="_blank" class="btn">Pay with Card (${cart[0]})</a>`;
+    } else {
+      html += `<p>Pay individually with these links:</p>`;
+      [...new Set(cart)].forEach(item => {
+        html += `<a href="${products[item].paylink}" target="_blank" class="btn">${item} PayLink</a><br>`;
+      });
+    }
+
+    cartMenu.innerHTML = html;
+  }
+
+  function showCart() {
+    cartMenu.style.display = "block";
+    setTimeout(() => {
+      cartMenu.style.transform = "translateY(0)";
+      cartMenu.style.opacity = "1";
+    }, 10);
+  }
+
+  function hideCart() {
+    cartMenu.style.transform = "translateY(-20px)";
+    cartMenu.style.opacity = "0";
+    setTimeout(() => { cartMenu.style.display = "none"; }, 300);
+  }
+
+  cartBtn.onclick = () => {
+    if (cartMenu.style.display === "block") {
+      hideCart();
+    } else {
+      showCart();
+    }
+  };
+
+  // Hide cart if clicked outside
+  document.addEventListener("click", (e) => {
+    if (!cartMenu.contains(e.target) && !cartBtn.contains(e.target)) {
+      hideCart();
+    }
+  });
+</script>
+
+</body>
+</html>
