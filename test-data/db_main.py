@@ -17,8 +17,8 @@ cursor.execute('''
 conn.commit() 
 def main():
 
-    bottlestock_small_val = 100 
-    bottlestock_large_val = 50  
+    bottlestock_small_val = 5
+    bottlestock_large_val = 8
     bottlestock_special_val = "Olivia's Special"
 
     # Insert data into the table
