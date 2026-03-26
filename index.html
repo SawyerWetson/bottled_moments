@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Bottled Moments</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.png" type="image/png">
 
@@ -19,7 +20,7 @@
   --text-light:#555;
 }
 
-body{
+body {
 margin:0;
 font-family:'Poppins',sans-serif;
 background:var(--bg-light);
@@ -28,17 +29,12 @@ overflow-x:hidden;
 transition:0.4s;
 }
 
-body.dark-mode{
-background:var(--bg-dark);
-color:#f5f5f5;
-}
-
 header{
 background:rgba(255,255,255,0.9);
 padding:15px 40px;
 display:flex;
-justify-content:space-between;
 align-items:center;
+justify-content:space-between;
 box-shadow:0 2px 10px rgba(0,0,0,0.08);
 position:sticky;
 top:0;
@@ -47,10 +43,7 @@ z-index:1000;
 
 img.logo{width:140px;}
 
-nav{
-display:flex;
-gap:20px;
-}
+nav{display:flex;gap:20px;}
 
 nav a{
 text-decoration:none;
@@ -65,15 +58,20 @@ max-width:950px;
 margin:auto;
 }
 
+h1{
+font-family:'Playfair Display',serif;
+font-size:2.6em;
+}
+
 .btn{
 background:linear-gradient(135deg,var(--secondary),var(--primary));
 color:white;
 padding:12px 26px;
 border:none;
 border-radius:30px;
-font-weight:600;
 cursor:pointer;
 text-decoration:none;
+font-weight:600;
 }
 
 .product-grid{
@@ -87,11 +85,21 @@ margin-top:40px;
 .product-card{
 background:var(--card-light);
 border-radius:18px;
-padding:24px;
-width:270px;
 box-shadow:0 5px 14px rgba(0,0,0,0.1);
+width:270px;
+padding:24px;
+text-align:center;
 }
 
+/* FIXED IMAGE SIZE */
+.product-card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:12px;
+}
+
+/* Discount box */
 .discount-box{
 margin:40px auto;
 padding:25px;
@@ -106,6 +114,22 @@ padding:10px;
 width:80%;
 border-radius:8px;
 border:1px solid #ccc;
+margin-top:10px;
+}
+
+.video-container{
+width:100%;
+max-width:720px;
+margin:40px auto;
+text-align:center;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 6px 16px rgba(0,0,0,0.1);
+}
+
+.video-container iframe{
+width:100%;
+height:394px;
 }
 
 footer{
@@ -113,6 +137,7 @@ background:#2c3e50;
 color:white;
 text-align:center;
 padding:25px;
+margin-top:70px;
 }
 </style>
 </head>
@@ -129,19 +154,26 @@ padding:25px;
 </nav>
 </header>
 
+<div class="video-container">
+<iframe src="https://player.vimeo.com/video/1110596803"
+allowfullscreen></iframe>
+</div>
+
 <section id="home">
 <h1>Obtain A Stunning Necklace</h1>
-<p>Bottled Moments is created by 6th and 7th graders.</p>
+<p>Bottled Moments is created by 6th and 7th graders. We sell beautiful necklaces for only $10.</p>
+<a href="#buy" class="btn">Start Your Bottled Moment</a>
 </section>
 
 <section id="buy">
 
 <h1>Buy Your Bottled Moment Necklace</h1>
+<p>Choose your favorite design!</p>
 
-<!-- DISCOUNT UNLOCK -->
+<!-- Cross Timbers Discount -->
 <div class="discount-box">
-<h2>Cross Timbers Student Discount</h2>
-<p>Enter your school to unlock the special checkout.</p>
+<h2>Student Discount</h2>
+<p>Enter your school to unlock special checkout.</p>
 
 <input id="schoolInput" placeholder="Enter your school">
 <br><br>
@@ -155,31 +187,31 @@ padding:25px;
 <div class="product-card">
 <h3>Bottle Necklace</h3>
 <img src="bottleimage.jpg">
-<p>$7</p>
+<p>Price: $7</p>
 </div>
 
 <div class="product-card">
 <h3>Olivia's Special</h3>
 <img src="customstuff.jpg">
-<p>$10</p>
+<p>Price: $10</p>
 </div>
 
 <div class="product-card">
 <h3>VIP Pack</h3>
 <img src="vippackage.jpg">
-<p>$12</p>
+<p>Price: $12</p>
 </div>
 
 </div>
 </section>
 
 <section id="about">
-<h1>About</h1>
-<p>We are creative students making necklaces.</p>
+<h1>About Bottled Moments</h1>
+<p>We are a group of creative 6th and 7th graders making beautiful necklaces.</p>
 </section>
 
 <section id="contact">
-<h1>Contact</h1>
+<h1>Contact Us</h1>
 <p>Email: sawyer.wetson@gmail.com</p>
 </section>
 
@@ -188,11 +220,11 @@ padding:25px;
 </footer>
 
 <script>
-
 function scrollToSection(id){
 document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
+/* Discount unlock system */
 let crossTimbersUnlocked=false;
 
 function unlockDiscount(){
@@ -201,16 +233,15 @@ let msg=document.getElementById("discountMessage");
 
 if(school.includes("cross timbers")){
 crossTimbersUnlocked=true;
-msg.innerText="Discount unlocked for Cross Timbers students!";
+msg.innerText="Discount unlocked!";
 msg.style.color="green";
 }else{
-msg.innerText="This discount is only for Cross Timbers.";
+msg.innerText="Only students at a particular school can unlock this.";
 msg.style.color="red";
 }
 }
 
-/* CART SYSTEM */
-
+/* Cart system */
 const cartBtn=document.createElement("button");
 cartBtn.innerText="🛒 Cart (0)";
 cartBtn.className="btn";
@@ -223,6 +254,8 @@ cartMenu.style.right="20px";
 cartMenu.style.width="300px";
 cartMenu.style.background="#fff";
 cartMenu.style.padding="20px";
+cartMenu.style.borderRadius="12px";
+cartMenu.style.boxShadow="0 6px 18px rgba(0,0,0,0.2)";
 cartMenu.style.display="none";
 document.body.appendChild(cartMenu);
 
@@ -232,17 +265,17 @@ const products={
 "Bottle Necklace":{
 price:7,
 paylink:"https://pay.bottled-moments.com/fcddf74f-e9a0-4339-a710-e3c",
-discountPaylink:"PUT_DISCOUNT_LINK_HERE_1"
+discountPaylink:"https://pay.bottled-moments.com/0e3b646c-9eac-4c08-bec7-bcb"
 },
 "Olivia's Special":{
 price:10,
 paylink:"https://pay.bottled-moments.com/cbf6c317-ca83-4a16-89dd-73e",
-discountPaylink:"PUT_DISCOUNT_LINK_HERE_2"
+discountPaylink:"https://pay.bottled-moments.com/55533aae-4fcf-43ed-b835-59a"
 },
 "VIP Pack":{
 price:12,
 paylink:"https://pay.bottled-moments.com/e1f6042c-e522-4744-a9b0-139",
-discountPaylink:"PUT_DISCOUNT_LINK_HERE_3"
+discountPaylink:"https://pay.bottled-moments.com/c94b285f-4579-4f71-89d2-eb8"
 }
 };
 
@@ -266,7 +299,7 @@ cartBtn.innerText=`🛒 Cart (${cart.length})`;
 
 let html="<h3>Your Cart</h3>";
 
-cart.forEach((item,i)=>{
+cart.forEach((item)=>{
 html+=`${item} - $${products[item].price}<br>`;
 });
 
@@ -291,7 +324,6 @@ cartBtn.onclick=()=>{
 cartMenu.style.display=
 cartMenu.style.display==="block"?"none":"block";
 };
-
 </script>
 
 </body>
